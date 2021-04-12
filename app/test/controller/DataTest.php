@@ -11,7 +11,7 @@ class DataTest
     public function index(){
         $user = Db::name('user')->order('uid','asc')->select();
         dump($user->toArray());
-        $car = Db::name('car')->where('status','using')->select();
+        $car = Db::name('car')->where('price','>','10')->select();
         dump($car);
 //        return json($user->toArray());
     }
