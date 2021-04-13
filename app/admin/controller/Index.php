@@ -5,7 +5,7 @@ use app\BaseController;
 use think\facade\View;
 
 
-class index extends BaseController
+class Index extends BaseController
 {
     public function index()
     {
@@ -16,7 +16,7 @@ class index extends BaseController
         if($uid == null || $uid == "" || $uid == "null" || $uid == 0){
             return View::fetch('login');
         }
-
+        return view('admin');
     }
 
 }
