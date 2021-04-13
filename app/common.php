@@ -31,26 +31,25 @@ function jerr($msg = 'error', $code = 500)
     die;
 }
 /**
- * 密码+盐 加密
+ * 密码MD5 加密
  *
  * @param string 明文密码
- * @param string 盐
  * @return string
  */
 function encodePassword($password, $salt)
 {
-    return sha1($password . $salt . $password . $salt);
+    return md5($password);
 }
-/**
- * 密码校验 6-16
- *
- * @param string 明文密码
- * @return boolean 是否校验通过
- */
-function isValidPassword($password)
-{
-    return preg_match('/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?!.*\s).{6,}/', $password);
-}
+///**
+// * 密码校验 6-16
+// *
+// * @param string 明文密码
+// * @return boolean 是否校验通过
+// */
+//function isValidPassword($password)
+//{
+//    return preg_match('/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?!.*\s).{6,}/', $password);
+//}
 /**
  * 获取随机字符
  *

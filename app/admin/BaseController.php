@@ -51,13 +51,13 @@ abstract class BaseController
 
 
     //模型
-    protected $userModel;
-    protected $accessModel;
-    protected $authModel;
-    protected $nodeModel;
-    protected $groupModel;
-    protected $confModel;
-    protected $logModel;
+//    protected $userModel;
+//    protected $accessModel;
+//    protected $authModel;
+//    protected $nodeModel;
+//    protected $groupModel;
+//    protected $confModel;
+//    protected $logModel;
 
     /**
      * Request实例
@@ -91,7 +91,6 @@ abstract class BaseController
         $this->initialize();
     }
 
-    //TODO !!!如有特殊需求请重写下面的方法到子类，请勿修改此处!!! BEGIN.........//
     /**
      * 添加接口基类 子类自动继承 如有特殊需求 可重写到子类 请勿修改父类方法
      *
