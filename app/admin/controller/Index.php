@@ -2,15 +2,21 @@
 namespace app\admin\controller;
 
 use app\BaseController;
+use think\facade\View;
 
-class Index extends BaseController
+
+class index extends BaseController
 {
     public function index()
     {
-        return 'index';
+        $uid = session('user');
+        if(!isset($uid)){
+            $uid = "";
+        }
+        if($uid == null || $uid == "" || $uid == "null" || $uid == 0){
+            return View::fetch('login');
+        }
+
     }
 
-    public function hello(){
-        echo 'helloworld';
-    }
 }
