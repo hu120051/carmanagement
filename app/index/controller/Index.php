@@ -4,7 +4,7 @@
 namespace app\index\controller;
 
 
-use app\BaseController;
+use app\admin\BaseController;
 use think\facade\View;
 
 class Index extends BaseController

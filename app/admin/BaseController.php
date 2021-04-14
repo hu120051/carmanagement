@@ -39,20 +39,6 @@ abstract class BaseController
 
 
     /**
-     * 构造方法
-     * @access public
-     * @param  App  $app  应用对象
-     */
-    public function __construct(App $app)
-    {
-        $this->app     = $app;
-        $this->request = $this->app->request;
-
-        // 控制器初始化
-        $this->initialize();
-    }
-
-    /**
      *后台简单的身份判断
      *
      * @return void
@@ -60,9 +46,8 @@ abstract class BaseController
     public function access()
     {
         $callback = "/admin";
-        $access_token = session('username');
-        if (!$access_token) {
-            return redirect('/admin/user/login/?callback=' . urlencode($callback));
+        if (!cookie('username')) {
+            return '123';
         }
     }
 }

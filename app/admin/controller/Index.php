@@ -1,22 +1,32 @@
 <?php
 namespace app\admin\controller;
 
-use app\BaseController;
+use app\admin\BaseController;
+use think\facade\Session;
 use think\facade\View;
+
 
 
 class Index extends BaseController
 {
     public function index()
     {
-        $uid = session('user');
-        if(!isset($uid)){
-            $uid = "";
-        }
-        if($uid == null || $uid == "" || $uid == "null" || $uid == 0){
+  //      Session::set('user', '$user_account');
+ //       return session('user');
+ //       $uid = session('user');
+//        if(!isset($uid)){
+//            $uid = "";
+//        }
+        $error = $this->access();
+ //       if($uid == null || $uid == "" || $uid == "null"){
+//            return $uid;
+//            return View::fetch('login');
+ //       }
+        if($error)
+        {
             return View::fetch('login');
         }
-        return view('admin');
+        return View::fetch('admin');
     }
 
 }

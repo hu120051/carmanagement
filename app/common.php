@@ -36,7 +36,7 @@ function jerr($msg = 'error', $code = 500)
  * @param string 明文密码
  * @return string
  */
-function encodePassword($password, $salt)
+function encodePassword($password)
 {
     return md5($password);
 }

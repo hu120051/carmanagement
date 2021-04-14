@@ -95,6 +95,9 @@
                             message: '登录成功,正在跳转中',
                             type: 'success'
                         });
+                        setTimeout(function () {
+                            location.replace('admin');
+                        }, 1000)
                     } else {
                         that.$message.error(response.data.msg);
                     }

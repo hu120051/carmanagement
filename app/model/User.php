@@ -17,11 +17,11 @@ class User extends Model
             //判断密码是否正确
             $password = MD5($user_password);
             $md5 = $user['password'];
-//            return $password;
+//            return $md5;
             if ($password != $md5) {
                 return false;
             }
-            return $user->toArray() ?? false;
+            return $user;
         } else {
             return false;
         }
