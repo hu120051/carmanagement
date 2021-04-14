@@ -38,4 +38,10 @@ class User extends BaseController
             return jerr('用户名或密码错误',400);
         }
     }
+
+    public function logout()
+    {
+        setCookie('username',null, time() + 3600, '/');
+        return jok('退出成功');
+    }
 }

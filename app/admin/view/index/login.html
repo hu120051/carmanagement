@@ -90,7 +90,7 @@
                 axios.post('admin/user/login', Object.assign({}, PostBase, that.form))
                 .then(function (response)
                 {
-                    if (response.data.code == CODE_SUCCESS) {
+                    if (response.data.code == 200) {
                         that.$message({
                             message: '登录成功,正在跳转中',
                             type: 'success'
