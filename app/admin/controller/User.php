@@ -50,6 +50,16 @@ class User extends BaseController
     {
         $oldpswd = input("oldPassword");
         $newpswd = input("newPassword");
+        $user = new \app\model\User();
+        $temp = $user->changepswd(cookie('username'),$oldpswd,$newpswd);
+        if($temp)
+        {
+            return jok('修改成功',$temp);
+        }
+        else
+        {
+            return jerr('修改失败！',400);
+        }
     }
 
     public function logout()

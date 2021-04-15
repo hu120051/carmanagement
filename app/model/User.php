@@ -26,5 +26,29 @@ class User extends Model
             return false;
         }
     }
+    public function changepswd($username, $oldpswd, $newpswd)
+    {
+        $user = $this->where([
+            "username" => $username,
+        ])->find();
+        if ($user) {
+            //判断密码是否正确
+            $password = MD5($oldpswd);
+            $md5 = $user['password'];
+    //            return $md5;
+            if ($password != $md5) {
+                return false;
+            }
+            $new = MD5($newpswd);
+            $this->where([
+                "username" => $username
+            ])->update([
+                "password" => $new,
+            ]);
+            return $user;
+        } else {
+            return false;
+        }
+    }
 
 }

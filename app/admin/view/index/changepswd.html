@@ -247,11 +247,11 @@
                         .then(function (response) {
                             if (response.data.code == CODE_SUCCESS) {
                                 that.$message({
-                                    message: response.data.msg,
+                                    message: '密码修改成功,正在跳转中',
                                     type: 'success'
                                 });
                                 setTimeout(function () {
-                                    location.href = "/admin/user/login";
+                                    location.replace('/index');
                                 }, 2000);
                             } else {
                                 that.$message.error(response.data.msg);
