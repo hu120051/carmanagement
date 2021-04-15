@@ -9,6 +9,10 @@ use think\facade\View;
 
 class Index extends BaseController
 {
+    /**
+     *
+     * @return void
+     */
     public function index()
     {
   //      Session::set('user', '$user_account');
@@ -28,5 +32,13 @@ class Index extends BaseController
         }
         return View::fetch('admin');
     }
-
+    public function changepswd()
+    {
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('changepswd');
+    }
 }

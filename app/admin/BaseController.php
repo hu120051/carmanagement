@@ -45,7 +45,6 @@ abstract class BaseController
      */
     public function access()
     {
-        $callback = "/admin";
         if (!cookie('username')) {
             return '123';
         }

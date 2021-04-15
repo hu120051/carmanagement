@@ -6,12 +6,19 @@ namespace app\admin\controller;
 
 use app\admin\BaseController;
 use think\facade\Session;
+use think\facade\View;
 
 
 class User extends BaseController
 {
     public function login()
     {
+
+        //       if($uid == null || $uid == "" || $uid == "null"){
+//            return $uid;
+//            return View::fetch('login');
+        //       }
+
         if (!input("user_account"))
         {
             return jerr('请确认帐号是否正确填写', 400);
@@ -37,6 +44,12 @@ class User extends BaseController
         {
             return jerr('用户名或密码错误',400);
         }
+    }
+
+    public function changepswd()
+    {
+        $oldpswd = input("oldPassword");
+        $newpswd = input("newPassword");
     }
 
     public function logout()
