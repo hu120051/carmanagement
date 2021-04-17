@@ -9,6 +9,9 @@ use think\facade\Session;
 use think\facade\View;
 
 
+//前端通过axios_post传一个json对象到后端，后端用input函数接收，并不是接收前端input标签中的信息！
+
+
 class User extends BaseController
 {
     public function login()
@@ -27,6 +30,10 @@ class User extends BaseController
         {
             return jerr('请确认密码是否正确填写', 400);
         }
+// 另一种接收方式
+//        $params=json_decode(file_get_contents("php://input"),true);
+//        $username=$params['user_account'];
+//        return jerr($username);
         $user_account = input("user_account");
         $user_password = input("user_password");
         $user = new \app\model\User;

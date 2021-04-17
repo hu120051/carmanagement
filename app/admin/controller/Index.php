@@ -32,6 +32,12 @@ class Index extends BaseController
         }
         return View::fetch('admin');
     }
+
+    /**
+     * 修改密码
+     *
+     * @return string
+     */
     public function changepswd()
     {
         $error = $this->access();

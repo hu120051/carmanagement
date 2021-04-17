@@ -1,7 +1,7 @@
 var CODE_SUCCESS = 200;
-var access_token = getCookie("access_token");
+var username = getCookie("username");
 var PostBase = {
-    access_token: access_token,
+    username: username,
     plat: "admin",
     version: "10000"
 };
