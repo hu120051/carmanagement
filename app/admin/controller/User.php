@@ -61,6 +61,7 @@ class User extends BaseController
         $temp = $user->changepswd(cookie('username'),$oldpswd,$newpswd);
         if($temp)
         {
+            setCookie('username',null, time() + 3600, '/');
             return jok('修改成功',$temp);
         }
         else
