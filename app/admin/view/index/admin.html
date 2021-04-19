@@ -277,6 +277,59 @@
                     map.openInfoWindow(infoWindow2, pt2); // 开启信息窗口
                 });
                 map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+                //定义一个控件类
+                function ZoomControl() {
+                    this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+                    this.defaultOffset = new BMapGL.Size(20, 20)
+                }
+                //通过JavaScript的prototype属性继承于BMap.Control
+                ZoomControl.prototype = new BMapGL.Control();
+
+                //自定义控件必须实现自己的initialize方法，并且将控件的DOM元素返回
+                //在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中
+                ZoomControl.prototype.initialize = function(map) {
+                    //创建一个dom元素
+                    var div = document.createElement('div');
+                    //添加文字说明
+                    div.appendChild(document.createTextNode('更新位置'));
+                    // 设置样式
+                    div.style.cursor = "pointer";
+                    div.style.padding = "7px 10px";
+                    div.style.boxShadow = "0 2px 6px 0 rgba(27, 142, 236, 0.5)";
+                    div.style.borderRadius = "5px";
+                    div.style.backgroundColor = "white";
+                    // 绑定事件,点击一次放大两级
+                    div.onclick = function(e){
+                        //更新位置相关post代码
+                        //先写更新marker1占位
+
+
+
+                        map.removeOverlay(marker1);
+                        var pt3 = new BMapGL.Point(106.47007430114928,29.568019969742554);
+                        var marker3 = new BMapGL.Marker(pt3, {
+                            icon: myIcon
+                        });
+                        map.addOverlay(marker3);
+                        var infoWindow3 = new BMapGL.InfoWindow('牌照：渝C·3W41Q</br>驾驶员：thrid', opts);
+                        marker3.addEventListener('click', function () {
+                            map.openInfoWindow(infoWindow3, pt3); // 开启信息窗口
+                        });
+
+
+
+
+
+                    }
+                    // 添加DOM元素到地图中
+                    map.getContainer().appendChild(div);
+                    // 将DOM元素返回
+                    return div;
+                }
+                //创建控件元素
+                var myZoomCtrl = new ZoomControl();
+                //添加到地图中
+                map.addControl(myZoomCtrl);
             }
         }
     })
