@@ -11,7 +11,7 @@ class Index extends BaseController
 {
     /**
      *
-     * @return void
+     * @return string
      */
     public function index()
     {

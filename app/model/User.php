@@ -21,7 +21,7 @@ class User extends Model
             if ($password != $md5) {
                 return false;
             }
-            return $user;
+            return $user->toArray();
         } else {
             return false;
         }
@@ -50,5 +50,11 @@ class User extends Model
             return false;
         }
     }
-
+    public function getmyvalue($username)
+    {
+        $user = $this->where([
+            "username" => $username,
+        ])->find()->toArray();
+        return $user;
+    }
 }

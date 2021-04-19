@@ -74,4 +74,10 @@ class User extends BaseController
         setCookie('username',null, time() + 3600, '/');
         return jok('退出成功');
     }
+
+    public function getmyvalue(){
+        $user = new \app\model\User();
+        $data = $user->getmyvalue(cookie('username'));
+        return jok('',$data);
+    }
 }
