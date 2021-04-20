@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>车队管理系统</title>
+
+    {include file="common/header"/}
+    <el-main>
+        <!--                <el-table >-->
+        <!--                    <el-table-column label="日期" width="140">-->
+        <!--                    </el-table-column>-->
+        <!--                    <el-table-column label="姓名" width="120">-->
+        <!--                    </el-table-column>-->
+        <!--                    <el-table-column label="地址">-->
+        <!--                    </el-table-column>-->
+        <!--                </el-table>-->
+        <div id="container"></div>
+    </el-main>
+    {include file="common/footer"/}
+    <script src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=p8FRTGZ4V26VzvT6Kot8fM8DFxG8UGVv"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                len : 106.4737810,
+                lat : 29.5675670,
+                username : "",
+            },
+            mounted () {
+                this.baiduMap();
+                // this.username = getCookie('username');
+                this.abcd();
+            },
+
+            methods: {
+                logOut() {
+                    var that = this;
+                    axios.post('user/logout')
+                        .then(function (response)
+                        {
+                            if (response.data.code == 200) {
+                                that.$message({
+                                    message: '退出成功,正在跳转中',
+                                    type: 'success'
+                                });
+                                setTimeout(function () {
+                                    location.replace('');
+                                }, 1000)
+                            } else {
+                                that.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(function (error)
+                        {
+                            that.$message.error('tuichu失败，服务器内部错误');
+                        })
+                    ;
+
+                },
+                abcd(){
+                    var that = this;
+                    axios.post('user/getmyvalue')
+                        .then(function (response)
+                        {
+                            that.username = response.data.data.name;
+                        })
+
+                },
+                baiduMap(){
+                    var map = new BMapGL.Map('container');
+                    var point = new BMapGL.Point(this.len, this.lat);
+                    map.centerAndZoom(point, 17);
+                    // 创建小车图标(目前本地还没有图标，地图上看不到，可以删掉下面一行，marker去掉pt后面的参数，让其变成默认红点)
+                    var myIcon = new BMapGL.Icon('http://i2.tiimg.com/736160/ea1770cd411d5d38.png', new BMapGL.Size(52, 26));
+
+                    // 创建Marker标注，使用小车图标
+                    var pt1 = new BMapGL.Point(106.4766920, 29.5658390);
+                    var pt2 = new BMapGL.Point(106.4737810, 29.5675670);
+                    var marker1 = new BMapGL.Marker(pt1, {
+                        icon: myIcon
+                    });
+                    var marker2 = new BMapGL.Marker(pt2, {
+                        icon: myIcon
+                    });
+                    // 将标注添加到地图
+                    map.addOverlay(marker1);
+                    map.addOverlay(marker2);
+                    // 创建信息窗口
+                    var opts = {
+                        width: 200,
+                        height: 100,
+                        title: '车辆信息'
+                    };
+                    var infoWindow1 = new BMapGL.InfoWindow('牌照：渝A·71233</br>驾驶员：hhy', opts);
+                    var infoWindow2 = new BMapGL.InfoWindow('牌照：渝B·42132</br>驾驶员：GLL', opts);
+                    // 点标记添加点击事件
+                    marker1.addEventListener('click', function () {
+                        map.openInfoWindow(infoWindow1, pt1); // 开启信息窗口
+                    });
+                    marker2.addEventListener('click', function () {
+                        map.openInfoWindow(infoWindow2, pt2); // 开启信息窗口
+                    });
+                    map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+                    //定义一个控件类
+                    function ZoomControl() {
+                        this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+                        this.defaultOffset = new BMapGL.Size(20, 20)
+                    }
+                    //通过JavaScript的prototype属性继承于BMap.Control
+                    ZoomControl.prototype = new BMapGL.Control();
+
+                    //自定义控件必须实现自己的initialize方法，并且将控件的DOM元素返回
+                    //在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中
+                    ZoomControl.prototype.initialize = function(map) {
+                        //创建一个dom元素
+                        var div = document.createElement('div');
+                        //添加文字说明
+                        div.appendChild(document.createTextNode('更新位置'));
+                        // 设置样式
+                        div.style.cursor = "pointer";
+                        div.style.padding = "7px 10px";
+                        div.style.boxShadow = "0 2px 6px 0 rgba(27, 142, 236, 0.5)";
+                        div.style.borderRadius = "5px";
+                        div.style.backgroundColor = "white";
+                        // 绑定事件,点击一次放大两级
+                        div.onclick = function(e){
+                            //更新位置相关post代码
+                            //先写更新marker1占位
+
+
+
+                            map.removeOverlay(marker1);
+                            var pt3 = new BMapGL.Point(106.47007430114928,29.568019969742554);
+                            var marker3 = new BMapGL.Marker(pt3, {
+                                icon: myIcon
+                            });
+                            map.addOverlay(marker3);
+                            var infoWindow3 = new BMapGL.InfoWindow('牌照：渝C·3W41Q</br>驾驶员：thrid', opts);
+                            marker3.addEventListener('click', function () {
+                                map.openInfoWindow(infoWindow3, pt3); // 开启信息窗口
+                            });
+
+
+
+
+
+                        }
+                        // 添加DOM元素到地图中
+                        map.getContainer().appendChild(div);
+                        // 将DOM元素返回
+                        return div;
+                    }
+                    //创建控件元素
+                    var myZoomCtrl = new ZoomControl();
+                    //添加到地图中
+                    map.addControl(myZoomCtrl);
+                }
+            }
+        })
+    </script>
+
+</html>

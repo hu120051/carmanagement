@@ -42,10 +42,14 @@ class User extends BaseController
 //        return jerr('执行完毕model查询'.$temp);     //测试
         if($temp)
         {
-
-            setCookie('username', $user_account, time() + 3600, '/');
- //           return jerr('aaa'.$temp['username']);
-            return jok('登录成功',$temp);
+            $data = $user->getmyvalue($user_account);
+            if($data['group'] == "admin"||$data['group'] == "superadmin"){
+                setCookie('username', $user_account, time() + 3600, '/');
+                return jok('登录成功',$temp);
+            }
+            else{
+                return jerr('您不是管理员用户！',400);
+            }
         }
         else
         {

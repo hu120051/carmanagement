@@ -46,4 +46,19 @@ class Index extends BaseController
         }
         return View::fetch('changepswd');
     }
+
+    /**
+     * 车辆监控
+     *
+     * @return string
+     */
+    public function location()
+    {
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('location');
+    }
 }
