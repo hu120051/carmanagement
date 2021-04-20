@@ -134,7 +134,7 @@
                         <el-link :underline="false" class="el-icon-user-solid">{{ username }}</el-link>
                         <el-dropdown-menu slot="dropdown">
 
-                            <el-dropdown-item onclick="location.href='admin/index/changepswd';">修改密码
+                            <el-dropdown-item onclick="location.href='changepswd';">修改密码
                             </el-dropdown-item>
                             <!--                            <el-dropdown-item onclick="location.href='/admin/user/logout'>退出登录-->
                             <!--                            </el-dropdown-item>-->
@@ -154,7 +154,7 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">用户管理</span>
                     </template>
-                    <el-menu-item index="/demo/index" onclick="location.href='index/changepswd';">用户信息</el-menu-item>
+                    <el-menu-item index="/demo/index" onclick="location.href='/admin/index';">用户信息</el-menu-item>
                     <el-menu-item index="/demo/group">分组</el-menu-item>
                 </el-submenu>
                 <el-submenu index="2">
