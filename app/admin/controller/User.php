@@ -102,6 +102,20 @@ class User extends BaseController
         return jok('',$data);
     }
 
+    public function adduser(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $name = $params['name'];
+        $username = $params['username'];
+        $password = md5($params['uncodepassword']);
+        $group = $params['group'];
+        $user = new \app\model\User();
+        $result = $user->adduser($name,$username,$password,$group);
+        if($result){
+            return jok('添加成功！');
+        }
+        return  jerr('添加失败！');
+    }
+
     public function updateuser(){
         $params=json_decode(file_get_contents("php://input"),true);
         $uid = $params['uid'];

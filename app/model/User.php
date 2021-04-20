@@ -73,6 +73,17 @@ class User extends Model
         return $user;
     }
 
+    public function adduser($name,$username,$password,$group){
+        $data = [
+            'name' => $name,
+            'username' => $username,
+            'password' => $password,
+            'group' => $group
+        ];
+        $this->insert($data);
+        return true;
+    }
+
     public function updateuser($uid,$name,$group){
         $this->where([
             "uid" => $uid,
