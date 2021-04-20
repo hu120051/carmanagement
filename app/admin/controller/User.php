@@ -116,6 +116,17 @@ class User extends BaseController
         return  jerr('添加失败！');
     }
 
+    public function deleteuser(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $pk = input('pk');
+        $user = new \app\model\User();
+        $reslut = $data = $user->deleteuserbypk($pk);
+        if($reslut){
+            return jok('删除成功!');
+        }
+        return jerr('未知错误，删除失败！','400');
+    }
+
     public function updateuser(){
         $params=json_decode(file_get_contents("php://input"),true);
         $uid = $params['uid'];

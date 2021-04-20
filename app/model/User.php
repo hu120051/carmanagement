@@ -84,6 +84,11 @@ class User extends Model
         return true;
     }
 
+    public function deleteuserbypk($uid){
+        $this->where('uid',$uid)->delete();
+        return true;
+    }
+
     public function updateuser($uid,$name,$group){
         $this->where([
             "uid" => $uid,
