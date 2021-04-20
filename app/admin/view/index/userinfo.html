@@ -3,7 +3,15 @@
 
 <head>
     <title>用户信息·车队管理系统</title>
+    <style>
+        .el-table .warning-row {
+        background: oldlace;
+    }
 
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+    </style>
     {include file="common/header"/}
     <el-main>
         <el-form :inline="true">
@@ -11,7 +19,7 @@
                 <el-button type="primary" icon="el-icon-edit" size="small" @click="clickAdd">添加</el-button>
             </el-form-item>
         </el-form>
-        <el-table :data="user" >
+        <el-table :data="user" :row-class-name="tableRowClassName">
             <el-table-column prop="uid" label="ID">
             </el-table-column>
             <el-table-column prop="username" label="用户名">
@@ -230,6 +238,12 @@
                             console.log(error);
                         });
                 },
+                tableRowClassName({row}) {
+                    if (row.status === 'online') {
+                        return 'warning-row';
+                    }
+                    return '';
+                }
             }
         })
     </script>
