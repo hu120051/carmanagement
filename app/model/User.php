@@ -73,6 +73,15 @@ class User extends Model
         return $user;
     }
 
+    public function updateuser($uid,$name,$group){
+        $this->where([
+            "uid" => $uid,
+        ])->update([
+            'name' => $name,
+            'group' => $group
+        ]);
+    }
+
     public function getalluser(){
         return $this->order('uid','asc')->select();
     }

@@ -101,4 +101,14 @@ class User extends BaseController
         $data = $user->getmyvaluebypk($pk);
         return jok('',$data);
     }
+
+    public function updateuser(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $uid = $params['uid'];
+        $name = $params['name'];
+        $group = $params['group'];
+        $user = new \app\model\User();
+        $user->updateuser($uid,$name,$group);
+        return jok('修改成功！');
+    }
 }

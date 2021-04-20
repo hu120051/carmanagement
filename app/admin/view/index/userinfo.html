@@ -7,9 +7,7 @@
     {include file="common/header"/}
     <el-main>
         <el-table :data="user" >
-            <el-table-column  width="50">
-            </el-table-column>
-            <el-table-column prop="uid" label="ID" width="100">
+            <el-table-column prop="uid" label="ID">
             </el-table-column>
             <el-table-column prop="username" label="用户名">
             </el-table-column>
@@ -39,7 +37,7 @@
         </el-table>
     </el-main>
     <!-- 修改框 -->
-    <el-dialog title="修改批量打款信息" :visible.sync="dialogFormEdit" :modal-append-to-body='false'>
+    <el-dialog title="修改用户信息" :visible.sync="dialogFormEdit" :modal-append-to-body='false'>
         <el-form :model="formEdit" ref="formEdit">
 
             <el-form-item prop="uid" label="uid(不可更改)" >
@@ -52,7 +50,11 @@
                 <el-input size="medium" autocomplete="off" v-model="formEdit.name"></el-input>
             </el-form-item>
             <el-form-item prop="group" label="用户组" :label-width="50">
-                <el-input size="medium" autocomplete="off" v-model="formEdit.group"></el-input>
+                <el-radio-group v-model="formEdit.group">
+                    <el-radio label="superadmin"></el-radio>
+                    <el-radio label="admin"></el-radio>
+                    <el-radio label="staff"></el-radio>
+                </el-radio-group>
             </el-form-item>
 
         </el-form>
@@ -135,6 +137,25 @@
                             if (response.data.code == CODE_SUCCESS) {
                                 that.formEdit = response.data.data;
                                 that.dialogFormEdit = true;
+                            } else {
+                                that.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(function (error) {
+                            that.$message.error('服务器内部错误');
+                            console.log(error);
+                        });
+                },
+                postEdit(){
+                    var that = this;
+                    axios.post('user/updateuser', Object.assign({}, PostBase, that.formEdit))
+                        .then(function (response) {
+                            if (response.data.code == CODE_SUCCESS) {
+                                that.$message({
+                                    message: response.data.msg,
+                                    type: 'success'
+                                });
+                                that.dialogFormEdit = false;
                             } else {
                                 that.$message.error(response.data.msg);
                             }
