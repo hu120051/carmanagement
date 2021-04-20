@@ -21,6 +21,11 @@ class User extends Model
             if ($password != $md5) {
                 return false;
             }
+            $this->where([
+                "username" => $user_account,
+            ])->update([
+                'status' => 'online'
+            ]);
             return $user->toArray();
         } else {
             return false;
@@ -50,11 +55,29 @@ class User extends Model
             return false;
         }
     }
+
+    public function logout($username)
+    {
+        $this->where([
+            "username" => $username,
+        ])->update([
+            'status' => 'offline'
+        ]);
+    }
+
     public function getmyvalue($username)
     {
         $user = $this->where([
             "username" => $username,
         ])->find()->toArray();
         return $user;
+    }
+
+    public function getalluser(){
+        return $this->order('uid','asc')->select();
+    }
+
+    public function getmyvaluebypk($pk){
+        return $this->find($pk);
     }
 }

@@ -48,6 +48,21 @@ class Index extends BaseController
     }
 
     /**
+     * 成员信息
+     *
+     * @return string
+     */
+    public function userinfo()
+    {
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('userinfo');
+    }
+
+    /**
      * 车辆监控
      *
      * @return string

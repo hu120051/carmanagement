@@ -5,6 +5,7 @@
 use think\facade\Route;
 Route::rule('changepswd','admin/index/changepswd');
 Route::rule('location','admin/index/location');
+Route::rule('userinfo','admin/index/userinfo');
 return [
     // pathinfo分隔符
     'pathinfo_depr'         => '/',

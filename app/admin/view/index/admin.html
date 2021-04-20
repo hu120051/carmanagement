@@ -7,15 +7,13 @@
     {include file="common/header"/}
             <el-main>
                 <h1>欢迎您，{{ group }}：{{ username }}</h1>
+                <h2>上次登录时间：{{update_time}}</h2>
             </el-main>
     {include file="common/footer"/}
-<script src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=p8FRTGZ4V26VzvT6Kot8fM8DFxG8UGVv"></script>
 <script>
     new Vue({
         el: '#app',
         data:{
-            len : 106.4737810,
-            lat : 29.5675670,
             username : "",
             group : "",
         },

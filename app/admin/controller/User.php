@@ -76,6 +76,8 @@ class User extends BaseController
 
     public function logout()
     {
+        $user = new \app\model\User();
+        $user->logout(cookie('username'));
         setCookie('username',null, time() + 3600, '/');
         return jok('退出成功');
     }
@@ -83,6 +85,20 @@ class User extends BaseController
     public function getmyvalue(){
         $user = new \app\model\User();
         $data = $user->getmyvalue(cookie('username'));
+        return jok('',$data);
+    }
+
+    public function getalluser(){
+        $user = new \app\model\User();
+        $data = $user->getalluser();
+        return jok('',$data);
+
+    }
+
+    public function getdata(){
+        $pk = input("pk");
+        $user = new \app\model\User();
+        $data = $user->getmyvaluebypk($pk);
         return jok('',$data);
     }
 }
