@@ -102,6 +102,11 @@ class User extends Model
         return $this->order('uid','asc')->select();
     }
 
+    /**
+     * @param $pk
+     *
+     * @return array
+     */
     public function getmyvaluebypk($pk){
         return $this->find($pk);
     }

@@ -120,6 +120,10 @@ class User extends BaseController
         $params=json_decode(file_get_contents("php://input"),true);
         $pk = input('pk');
         $user = new \app\model\User();
+        $test = $user->getmyvaluebypk($pk);
+        if($test['group']=='superadmin'){
+            return jerr('超级管理员无法删除！',400);
+        }
         $reslut = $data = $user->deleteuserbypk($pk);
         if($reslut){
             return jok('删除成功!');
