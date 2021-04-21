@@ -22,4 +22,18 @@ class Car extends Model
         $this->insert($data);
         return true;
     }
+
+    /**
+     * @param $pk
+     *
+     * @return array
+     */
+    public function getmyvaluebypk($pk){
+        return $this->find($pk)->toArray();
+    }
+
+    public function deletecarbypk($cid){
+        $this->where('cid',$cid)->delete();
+        return true;
+    }
 }

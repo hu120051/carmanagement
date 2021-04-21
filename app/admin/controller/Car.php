@@ -36,4 +36,21 @@ class Car extends  BaseController
         return  jerr('添加失败！');
     }
 
+    /**
+     * 删除车辆
+     *
+     * @return \json
+     */
+    public function deletecar(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $pk = $params['pk'];
+        $car = new \app\model\Car();
+        $reslut = $data = $car->deletecarbypk($pk);
+        if($reslut){
+            return jok('删除成功!');
+        }
+        return jerr('未知错误，删除失败！','400');
+    }
+
+
 }
