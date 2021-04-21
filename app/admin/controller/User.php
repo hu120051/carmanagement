@@ -95,6 +95,7 @@ class User extends BaseController
 
     }
 
+
     public function getdata(){
         $pk = input("pk");
         $user = new \app\model\User();
@@ -102,6 +103,12 @@ class User extends BaseController
         return jok('',$data);
     }
 
+
+    /**
+     * 添加用户
+     *
+     * @return \json
+     */
     public function adduser(){
         $params=json_decode(file_get_contents("php://input"),true);
         $name = $params['name'];
@@ -116,6 +123,11 @@ class User extends BaseController
         return  jerr('添加失败！');
     }
 
+    /**
+     * 删除用户
+     *
+     * @return \json
+     */
     public function deleteuser(){
         $params=json_decode(file_get_contents("php://input"),true);
         $pk = input('pk');
@@ -131,6 +143,11 @@ class User extends BaseController
         return jerr('未知错误，删除失败！','400');
     }
 
+    /**
+     * 更新用户信息
+     *
+     * @return \json
+     */
     public function updateuser(){
         $params=json_decode(file_get_contents("php://input"),true);
         $uid = $params['uid'];

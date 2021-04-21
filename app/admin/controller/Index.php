@@ -63,6 +63,21 @@ class Index extends BaseController
     }
 
     /**
+     * 车辆信息
+     *
+     * @return string
+     */
+    public function carinfo()
+    {
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('carinfo');
+    }
+
+    /**
      * 车辆监控
      *
      * @return string
