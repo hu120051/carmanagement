@@ -78,6 +78,36 @@ class Index extends BaseController
     }
 
     /**
+     * 用车记录
+     *
+     * @return string
+     */
+    public function carlog()
+    {
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('carlog');
+    }
+
+    /**
+     * 申请审批
+     *
+     * @return string
+     */
+    public function approval()
+    {
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('approval');
+    }
+
+    /**
      * 车辆监控
      *
      * @return string

@@ -6,4 +6,6 @@ use think\Model;
 class CarUse extends Model
 {
     protected $pk = 'logid';
+
+
 }
