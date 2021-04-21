@@ -37,11 +37,11 @@
                 <template slot-scope="scope">
                     <el-button v-if="scope.row.status=='applying'|scope.row.status=='fail'"
                             size="mini"
-                            @click="passEdit(scope.row.applyid)">同意</el-button>
+                            @click="passEdit(scope.row)">同意</el-button>
                     <el-button v-if="scope.row.status=='applying'|scope.row.status=='pass'"
                             size="mini"
                             type="danger"
-                            @click="failEdit(scope.row.applyid)">拒绝</el-button>
+                            @click="failEdit(scope.row)">拒绝</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -106,10 +106,14 @@
                             that.username = response.data.data.name;
                         })
                 },
-                passEdit(applyid){
+                passEdit(row){
                     var that = this;
                     axios.post('application/pass', Object.assign({}, PostBase, {
-                        pk: applyid
+                        pk: row.applyid,
+                        userid : row.userid,
+                        carid : row.carid,
+                        start_date : row.start_date,
+                        end_date : row.end_date,
                     }))
                         .then(function (response) {
                             if (response.data.code == CODE_SUCCESS) {
@@ -129,10 +133,14 @@
                             console.log(error);
                         });
                 },
-                failEdit(applyid){
+                failEdit(row){
                     var that = this;
                     axios.post('application/fail', Object.assign({}, PostBase, {
-                        pk: applyid
+                        pk: row.applyid,
+                        userid : row.userid,
+                        carid : row.carid,
+                        start_date : row.start_date,
+                        end_date : row.end_date,
                     }))
                         .then(function (response) {
                             if (response.data.code == CODE_SUCCESS) {
