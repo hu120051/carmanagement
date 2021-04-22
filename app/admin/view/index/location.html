@@ -25,11 +25,17 @@
                 len : 106.4737810,
                 lat : 29.5675670,
                 username : "",
+                test:"test",
+                loc:{
+                },
             },
             mounted () {
+
+                this.abcd();
+                this.abc();
                 this.baiduMap();
                 // this.username = getCookie('username');
-                this.abcd();
+
             },
 
             methods: {
@@ -62,7 +68,17 @@
                     axios.post('user/getmyvalue')
                         .then(function (response)
                         {
-                            that.username = response.data.data.name;
+                            if(response.data.code==200){
+                            that.username = response.data.data.name;}
+                        })
+
+                },
+                abc(){
+                    var that = this;
+                    axios.post('car/getlocation')
+                        .then(function (response)
+                        {
+                            that.loc = response.data.data;
                         })
 
                 },
@@ -72,7 +88,6 @@
                     map.centerAndZoom(point, 17);
                     // 创建小车图标(目前本地还没有图标，地图上看不到，可以删掉下面一行，marker去掉pt后面的参数，让其变成默认红点)
                     var myIcon = new BMapGL.Icon('http://i2.tiimg.com/736160/ea1770cd411d5d38.png', new BMapGL.Size(52, 26));
-
                     // 创建Marker标注，使用小车图标
                     var pt1 = new BMapGL.Point(106.4766920, 29.5658390);
                     var pt2 = new BMapGL.Point(106.4737810, 29.5675670);
@@ -115,7 +130,7 @@
                         //创建一个dom元素
                         var div = document.createElement('div');
                         //添加文字说明
-                        div.appendChild(document.createTextNode('更新位置'));
+                        div.appendChild(document.createTextNode(this.test));
                         // 设置样式
                         div.style.cursor = "pointer";
                         div.style.padding = "7px 10px";
