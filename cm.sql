@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 21/04/2021 16:16:36
+ Date: 23/04/2021 13:55:30
 */
 
 SET NAMES utf8mb4;
@@ -43,7 +43,7 @@ INSERT INTO `cm_application` VALUES (1, 7, 3, '2021-04-13 11:02:25', '2021-04-13
 INSERT INTO `cm_application` VALUES (2, 3, 2, '2021-04-13 11:13:11', '2021-04-14', '2021-04-16', 'fail');
 INSERT INTO `cm_application` VALUES (8, 4, 1, '2021-04-13 11:13:24', '2021-04-14', '2021-04-15', 'pass');
 INSERT INTO `cm_application` VALUES (9, 5, 4, '2021-04-15 17:49:26', '2021-04-16', '2021-04-20', 'pass');
-INSERT INTO `cm_application` VALUES (10, 6, 5, '2021-04-21 16:14:09', '2021-04-22', '2021-04-23', 'applying');
+INSERT INTO `cm_application` VALUES (10, 6, 5, '2021-04-21 16:14:09', '2021-04-22', '2021-04-23', 'pass');
 
 -- ----------------------------
 -- Table structure for cm_car
@@ -61,15 +61,15 @@ CREATE TABLE `cm_car`  (
   PRIMARY KEY (`cid`) USING BTREE,
   INDEX `userid`(`userid`) USING BTREE,
   CONSTRAINT `cm_car_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_car
 -- ----------------------------
-INSERT INTO `cm_car` VALUES (1, '渝A·7Q523', 'free', '2021-04-12', 'large_cargo', 29.00, '东风', NULL);
+INSERT INTO `cm_car` VALUES (1, '渝A·7Q523', 'free', '2021-04-12', 'large_cargo', 29.00, '东风', 1);
 INSERT INTO `cm_car` VALUES (2, '渝B·32124', 'free', '2021-04-12', 'mid_passenger', 40.00, '丰田', NULL);
-INSERT INTO `cm_car` VALUES (3, '渝C·78025', 'free', '2021-04-12', 'small_passenger', 7.00, '五菱', NULL);
-INSERT INTO `cm_car` VALUES (4, '渝A·B12S3', 'free', '2021-04-15', 'mid_cargo', 22.00, '一汽', NULL);
+INSERT INTO `cm_car` VALUES (3, '渝C·78025', 'free', '2021-04-12', 'small_passenger', 7.00, '五菱', 7);
+INSERT INTO `cm_car` VALUES (4, '渝A·B12S3', 'free', '2021-04-15', 'mid_cargo', 22.00, '一汽', 3);
 INSERT INTO `cm_car` VALUES (5, '渝A·JL23K', 'free', '2021-04-21', 'large_cargo', 29.30, '东风', NULL);
 
 -- ----------------------------
@@ -87,7 +87,7 @@ CREATE TABLE `cm_car_use`  (
   INDEX `carid`(`carid`) USING BTREE,
   CONSTRAINT `cm_car_use_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cm_car_use_ibfk_2` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_car_use
@@ -95,6 +95,9 @@ CREATE TABLE `cm_car_use`  (
 INSERT INTO `cm_car_use` VALUES (1, 3, 2, '2021-04-12', '2021-04-12');
 INSERT INTO `cm_car_use` VALUES (2, 4, 1, '2021-04-12', '2021-04-13');
 INSERT INTO `cm_car_use` VALUES (3, 7, 3, '2021-04-13', '2021-04-13');
+INSERT INTO `cm_car_use` VALUES (6, 5, 4, '2021-04-16', '2021-04-20');
+INSERT INTO `cm_car_use` VALUES (7, 6, 5, '2021-04-22', '2021-04-23');
+INSERT INTO `cm_car_use` VALUES (8, 4, 1, '2021-04-14', '2021-04-15');
 
 -- ----------------------------
 -- Table structure for cm_location
@@ -112,13 +115,17 @@ CREATE TABLE `cm_location`  (
   INDEX `cm_location_ibfk_2`(`carid`) USING BTREE,
   CONSTRAINT `cm_location_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cm_location_ibfk_2` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_location
 -- ----------------------------
 INSERT INTO `cm_location` VALUES (1, 7, 3, 106.4766920, 29.5658390, '2021-04-13 10:45:46');
 INSERT INTO `cm_location` VALUES (2, 7, 3, 106.4737810, 29.5675670, '2021-04-13 10:46:19');
+INSERT INTO `cm_location` VALUES (3, 1, 1, 106.4747810, 29.5775670, '2021-04-23 09:43:10');
+INSERT INTO `cm_location` VALUES (4, 1, 1, 106.4847810, 29.5775670, '2021-04-23 13:32:14');
+INSERT INTO `cm_location` VALUES (5, 7, 3, 106.4766920, 29.5658390, '2021-04-23 13:49:24');
+INSERT INTO `cm_location` VALUES (6, 3, 4, 106.4528652, 29.5523562, '2021-04-23 13:51:24');
 
 -- ----------------------------
 -- Table structure for cm_user
