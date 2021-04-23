@@ -24,12 +24,10 @@
             data:{
                 len : 106.4737810,
                 lat : 29.5675670,
-                center: {lng: 116.40387397, lat: 39.91488908},
                 username : "",
-                loc:{
-                    text:"test",
-                    a:{}
-                },
+                loc:[
+
+                ],
             },
             mounted () {
 
@@ -84,44 +82,57 @@
                     axios.post('car/getlocation')
                         .then(function (response)
                         {
-                            that.loc.a = response.data.data;
-                            that.loc.text = '456';
+                            that.loc= response.data.data;
                         })
 
                 },
                 baiduMap(){
+
+                    var that = this;
                     var map = new BMapGL.Map('container');
                     var point = new BMapGL.Point(this.len, this.lat);
-                    map.centerAndZoom(point, 17);
+                    map.centerAndZoom(point, 15);
                     // 创建小车图标(目前本地还没有图标，地图上看不到，可以删掉下面一行，marker去掉pt后面的参数，让其变成默认红点)
                     var myIcon = new BMapGL.Icon('http://i2.tiimg.com/736160/ea1770cd411d5d38.png', new BMapGL.Size(52, 26));
                     // 创建Marker标注，使用小车图标
-                    var pt1 = new BMapGL.Point(this.loc.a[0].lng, 29.5658390);
-                    var pt2 = new BMapGL.Point(106.4737810, 29.5675670);
-                    var marker1 = new BMapGL.Marker(pt1, {
-                        icon: myIcon
-                    });
-                    var marker2 = new BMapGL.Marker(pt2, {
-                        icon: myIcon
-                    });
-                    // 将标注添加到地图
-                    map.addOverlay(marker1);
-                    map.addOverlay(marker2);
-                    // 创建信息窗口
-                    var opts = {
-                        width: 200,
-                        height: 100,
-                        title: '车辆信息'
-                    };
-                    var infoWindow1 = new BMapGL.InfoWindow('牌照：渝A·71233</br>驾驶员：hhy', opts);
-                    var infoWindow2 = new BMapGL.InfoWindow('牌照：渝B·42132</br>驾驶员：GLL', opts);
-                    // 点标记添加点击事件
-                    marker1.addEventListener('click', function () {
-                        map.openInfoWindow(infoWindow1, pt1); // 开启信息窗口
-                    });
-                    marker2.addEventListener('click', function () {
-                        map.openInfoWindow(infoWindow2, pt2); // 开启信息窗口
-                    });
+                    for (var i in that.loc) {
+                        // (function (x) {
+                        console.log('name ')
+                        console.log(that.loc[i].name)
+                        console.log('i')
+                        console.log(that.loc[i])
+                        console.log('对象数组中地址')
+                        console.log(i)
+                        var pt = new BMapGL.Point(parseFloat(this.loc[i].lng), parseFloat(this.loc[i].lat));
+                        var marker = new BMapGL.Marker(pt, {
+                            icon: myIcon
+                        });
+                        map.addOverlay(marker);
+                        var opts = {
+                            width: 200,
+                            height: 100,
+                            title: '车辆信息'
+                        };
+                        var tmp;
+                        switch(that.loc[i].type) {
+                            case 'small_passenger': tmp = "小型客车";break;
+                            case 'mid_passenger':   tmp = "中型客车";break;
+                            case 'large_passenger': tmp = "大型客车";break;
+                            case 'small_cargo':     tmp = "小型货车";break;
+                            case 'mid_cargo':       tmp = "中型货车";break;
+                            case 'large_cargo':     tmp = "大型货车";break;
+                        }
+
+                        //闭包完成点击事件的参数传递
+                        (function (x) {
+                            var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[i].license+'</br>驾驶员：'+that.loc[i].name+'</br>车辆类型：'+tmp, opts);
+                            marker.addEventListener("click", function () {
+                                this.openInfoWindow(infoWindow,pt);
+                            });
+                        })(i);
+                    }
+
+
                     map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
                     //定义一个控件类
                     function ZoomControl() {
@@ -149,7 +160,7 @@
                             //更新位置相关post代码
                             //先写更新marker1占位
 
-
+                            //TODO：更新位置
 
                             map.removeOverlay(marker1);
                             var pt3 = new BMapGL.Point(106.47007430114928,29.568019969742554);
