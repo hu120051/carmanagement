@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 23/04/2021 13:55:30
+ Date: 23/04/2021 14:40:25
 */
 
 SET NAMES utf8mb4;
@@ -140,6 +140,7 @@ CREATE TABLE `cm_user`  (
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'offline',
   `group` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `count` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`uid`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
@@ -147,20 +148,20 @@ CREATE TABLE `cm_user`  (
 -- ----------------------------
 -- Records of cm_user
 -- ----------------------------
-INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-21 09:41:43', 'online', 'superadmin');
-INSERT INTO `cm_user` VALUES (2, '管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2021-04-12 17:10:17', '2021-04-20 17:37:19', 'offline', 'admin');
-INSERT INTO `cm_user` VALUES (3, '张三', 'zhangsan', '3ab7873060b6de9ca93b664e752bca6f', '2021-04-12 18:21:57', '2021-04-13 10:32:04', 'offline', 'staff');
-INSERT INTO `cm_user` VALUES (4, '李四', 'lisi', 'ada6f2b5b7ba3f1531e4c1e291cbe7b0', '2021-04-12 18:22:42', '2021-04-12 18:22:45', 'online', 'staff');
-INSERT INTO `cm_user` VALUES (5, '王五', 'wangwu', 'b52c0992c2d18eddbad0c05bac922cee', '2021-04-13 10:08:40', '2021-04-13 10:08:42', 'offline', 'staff');
-INSERT INTO `cm_user` VALUES (6, '赵六', 'zhaoliu', 'ad324eb585496327017b46f1b1d526de', '2021-04-13 10:31:03', '2021-04-13 10:31:03', 'online', 'admin');
-INSERT INTO `cm_user` VALUES (7, '高磊', 'gaolei', '8f85e32f11b1e4cfcbe353b5b646bf0f', '2021-04-13 10:34:54', '2021-04-13 11:05:33', 'online', 'staff');
-INSERT INTO `cm_user` VALUES (9, '方晓萌', 'fxm', '33f5b0123d2749770c2dd63007e9fb1d', '2021-04-13 11:07:01', '2021-04-13 14:02:46', 'offline', 'admin');
-INSERT INTO `cm_user` VALUES (13, '刘义良', 'liuyiliang', '3ae09f1e3ceb295a239c352461a6ca6f', '2021-04-13 13:48:07', '2021-04-13 13:48:07', 'offline', 'admin');
-INSERT INTO `cm_user` VALUES (14, '杨肇谦', 'yangzhaoqian', 'a63ee944347161d3f3b55a3e0320e3aa', '2021-04-13 13:59:42', '2021-04-13 13:59:42', 'offline', 'staff');
-INSERT INTO `cm_user` VALUES (15, '杨令', 'yangling', '2dd373cd649afdad040d2c414003ce71', '2021-04-20 17:11:04', '2021-04-20 17:17:11', 'offline', 'staff');
-INSERT INTO `cm_user` VALUES (17, '郭旭', 'guoxu', '4963908eaa34eb2107f519b8dd298188', '2021-04-20 17:13:52', '2021-04-20 17:13:52', 'offline', 'admin');
-INSERT INTO `cm_user` VALUES (18, '李彦霖', 'liyanlin', '3ae09f1e3ceb295a239c352461a6ca6f', '2021-04-20 17:15:30', '2021-04-20 17:15:30', 'offline', 'staff');
-INSERT INTO `cm_user` VALUES (19, '何菁鑫', 'hejingxin', '94f611ae3a813c9c3fa2f7be4ab045a2', '2021-04-20 17:16:02', '2021-04-20 17:16:02', 'offline', 'admin');
+INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-23 14:39:40', 'online', 'superadmin', 11);
+INSERT INTO `cm_user` VALUES (2, '管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2021-04-12 17:10:17', '2021-04-23 14:31:03', 'offline', 'admin', 114);
+INSERT INTO `cm_user` VALUES (3, '张三', 'zhangsan', '3ab7873060b6de9ca93b664e752bca6f', '2021-04-12 18:21:57', '2021-04-23 14:31:05', 'offline', 'staff', 3);
+INSERT INTO `cm_user` VALUES (4, '李四', 'lisi', 'ada6f2b5b7ba3f1531e4c1e291cbe7b0', '2021-04-12 18:22:42', '2021-04-23 14:31:06', 'online', 'staff', 1);
+INSERT INTO `cm_user` VALUES (5, '王五', 'wangwu', 'b52c0992c2d18eddbad0c05bac922cee', '2021-04-13 10:08:40', '2021-04-23 14:31:07', 'offline', 'staff', 4);
+INSERT INTO `cm_user` VALUES (6, '赵六', 'zhaoliu', 'ad324eb585496327017b46f1b1d526de', '2021-04-13 10:31:03', '2021-04-23 14:31:08', 'online', 'admin', 7);
+INSERT INTO `cm_user` VALUES (7, '高磊', 'gaolei', '8f85e32f11b1e4cfcbe353b5b646bf0f', '2021-04-13 10:34:54', '2021-04-23 14:31:10', 'online', 'staff', 22);
+INSERT INTO `cm_user` VALUES (9, '方晓萌', 'fxm', '33f5b0123d2749770c2dd63007e9fb1d', '2021-04-13 11:07:01', '2021-04-23 14:31:12', 'offline', 'admin', 41);
+INSERT INTO `cm_user` VALUES (13, '刘义良', 'liuyiliang', '3ae09f1e3ceb295a239c352461a6ca6f', '2021-04-13 13:48:07', '2021-04-23 14:31:15', 'offline', 'admin', 8);
+INSERT INTO `cm_user` VALUES (14, '杨肇谦', 'yangzhaoqian', 'a63ee944347161d3f3b55a3e0320e3aa', '2021-04-13 13:59:42', '2021-04-23 14:31:16', 'offline', 'staff', 11);
+INSERT INTO `cm_user` VALUES (15, '杨令', 'yangling', '2dd373cd649afdad040d2c414003ce71', '2021-04-20 17:11:04', '2021-04-23 14:31:18', 'offline', 'staff', 27);
+INSERT INTO `cm_user` VALUES (17, '郭旭', 'guoxu', '4963908eaa34eb2107f519b8dd298188', '2021-04-20 17:13:52', '2021-04-23 14:31:20', 'offline', 'admin', 11);
+INSERT INTO `cm_user` VALUES (18, '李彦霖', 'liyanlin', '3ae09f1e3ceb295a239c352461a6ca6f', '2021-04-20 17:15:30', '2021-04-23 14:31:22', 'offline', 'staff', 1);
+INSERT INTO `cm_user` VALUES (19, '何菁鑫', 'hejingxin', '94f611ae3a813c9c3fa2f7be4ab045a2', '2021-04-20 17:16:02', '2021-04-23 14:31:24', 'offline', 'admin', 0);
 
 -- ----------------------------
 -- Triggers structure for table cm_application

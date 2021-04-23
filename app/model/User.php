@@ -26,6 +26,7 @@ class User extends Model
             ])->update([
                 'status' => 'online'
             ]);
+            $this->where("username" , $user_account)->inc('count')->update();
             return $user->toArray();
         } else {
             return false;
@@ -78,7 +79,8 @@ class User extends Model
             'name' => $name,
             'username' => $username,
             'password' => $password,
-            'group' => $group
+            'group' => $group,
+            'count' => 0,
         ];
         $this->insert($data);
         return true;
