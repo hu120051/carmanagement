@@ -17,6 +17,7 @@ composer install
 ~~~
 创建数据库cm(utf8-mb4)，导入数据库cm.sql
 Clone或下载本仓库zip包，配置站点和ThinkPHP伪静态
+！！重要！！向数据库配置文件my.ini中[mysqld]中添加  sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES  配置，否则可能出现错误
 复制.example.env到.env 修改自己的数据库配置
 ~~~
 
