@@ -57,10 +57,12 @@ class Car extends  BaseController
             ->join(['cm_car'=>'c'],'l.carid=c.cid')
             ->join(['cm_user'=>'u'],'l.userid=u.uid')
             ->where('c.userid','<>','null')
+            ->order('l.time','desc')
+            ->limit(1000)
             ->field('c.license,c.type,u.uid,u.name,l.lng,l.lat,l.time')
             ->buildSql();
         $data = Db::table($subQuery . ' tmp')
-            ->field('license,type,uid,name,lng,lat,MAX(time)')
+            ->field('license,type,uid,name,lng,lat,time')
             ->group('uid')
             ->select();
         return jok('',$data);

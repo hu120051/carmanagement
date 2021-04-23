@@ -17,10 +17,12 @@ class index
             ->join(['cm_car'=>'c'],'l.carid=c.cid')
             ->join(['cm_user'=>'u'],'l.userid=u.uid')
             ->where('c.userid','<>','null')
-            ->field('c.license,c.type,u.uid,u.name,l.lng,l.lat,l.time')
+            ->field('l.lid,c.license,c.type,u.uid,u.name,l.lng,l.lat,l.time')
+            ->order('l.lid','desc')
+            ->limit(1000)
             ->buildSql();
         $data = Db::table($subQuery . ' tmp')
-            ->field('license,type,uid,name,lng,lat,MAX(time)')
+            ->field('lid,license,type,uid,name,lng,lat,time')
             ->group('uid')
             ->select();
         return jok('',$data);
