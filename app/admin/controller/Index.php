@@ -121,4 +121,19 @@ class Index extends BaseController
         }
         return View::fetch('location');
     }
+
+    /**
+     * 事故处理
+     *
+     * @return string
+     */
+    public function emergency()
+    {
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('emergency');
+    }
 }

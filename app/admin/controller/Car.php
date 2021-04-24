@@ -67,4 +67,17 @@ class Car extends  BaseController
             ->select();
         return jok('',$data);
     }
+
+    public function getemergency(){
+        $data = Db::table('cm_emergency')
+            ->alias('e')
+            ->join(['cm_car'=>'c'],'e.carid=c.cid')
+            ->join(['cm_user'=>'u'],'e.userid=u.uid')
+            ->where('e.status','=','0')
+            ->order('e.time','desc')
+            ->field('c.license,c.type,u.uid,u.name,e.lng,e.lat,e.time,e.remark')
+            ->select();
+
+        return jok('',$data);
+    }
 }

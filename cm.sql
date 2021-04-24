@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 23/04/2021 14:40:25
+ Date: 24/04/2021 10:32:05
 */
 
 SET NAMES utf8mb4;
@@ -66,10 +66,10 @@ CREATE TABLE `cm_car`  (
 -- ----------------------------
 -- Records of cm_car
 -- ----------------------------
-INSERT INTO `cm_car` VALUES (1, '渝A·7Q523', 'free', '2021-04-12', 'large_cargo', 29.00, '东风', 1);
+INSERT INTO `cm_car` VALUES (1, '渝A·7Q523', 'using', '2021-04-12', 'large_cargo', 29.00, '东风', 1);
 INSERT INTO `cm_car` VALUES (2, '渝B·32124', 'free', '2021-04-12', 'mid_passenger', 40.00, '丰田', NULL);
-INSERT INTO `cm_car` VALUES (3, '渝C·78025', 'free', '2021-04-12', 'small_passenger', 7.00, '五菱', 7);
-INSERT INTO `cm_car` VALUES (4, '渝A·B12S3', 'free', '2021-04-15', 'mid_cargo', 22.00, '一汽', 3);
+INSERT INTO `cm_car` VALUES (3, '渝C·78025', 'using', '2021-04-12', 'small_passenger', 7.00, '五菱', 7);
+INSERT INTO `cm_car` VALUES (4, '渝A·B12S3', 'using', '2021-04-15', 'mid_cargo', 22.00, '一汽', 3);
 INSERT INTO `cm_car` VALUES (5, '渝A·JL23K', 'free', '2021-04-21', 'large_cargo', 29.30, '东风', NULL);
 
 -- ----------------------------
@@ -98,6 +98,31 @@ INSERT INTO `cm_car_use` VALUES (3, 7, 3, '2021-04-13', '2021-04-13');
 INSERT INTO `cm_car_use` VALUES (6, 5, 4, '2021-04-16', '2021-04-20');
 INSERT INTO `cm_car_use` VALUES (7, 6, 5, '2021-04-22', '2021-04-23');
 INSERT INTO `cm_car_use` VALUES (8, 4, 1, '2021-04-14', '2021-04-15');
+
+-- ----------------------------
+-- Table structure for cm_emergency
+-- ----------------------------
+DROP TABLE IF EXISTS `cm_emergency`;
+CREATE TABLE `cm_emergency`  (
+  `mid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `carid` bigint(20) NOT NULL,
+  `userid` bigint(30) NOT NULL,
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `lng` decimal(10, 7) NULL DEFAULT NULL,
+  `lat` decimal(10, 7) NULL DEFAULT NULL,
+  `time` datetime NULL DEFAULT NULL,
+  `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0',
+  PRIMARY KEY (`mid`) USING BTREE,
+  INDEX `carid`(`carid`) USING BTREE,
+  INDEX `userid`(`userid`) USING BTREE,
+  CONSTRAINT `cm_emergency_ibfk_1` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cm_emergency_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cm_emergency
+-- ----------------------------
+INSERT INTO `cm_emergency` VALUES (1, 3, 6, '车祸', 106.4667340, 29.5693180, '2021-04-24 09:38:46', '0');
 
 -- ----------------------------
 -- Table structure for cm_location
@@ -148,7 +173,7 @@ CREATE TABLE `cm_user`  (
 -- ----------------------------
 -- Records of cm_user
 -- ----------------------------
-INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-23 14:39:40', 'online', 'superadmin', 11);
+INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-24 09:41:55', 'online', 'superadmin', 13);
 INSERT INTO `cm_user` VALUES (2, '管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2021-04-12 17:10:17', '2021-04-23 14:31:03', 'offline', 'admin', 114);
 INSERT INTO `cm_user` VALUES (3, '张三', 'zhangsan', '3ab7873060b6de9ca93b664e752bca6f', '2021-04-12 18:21:57', '2021-04-23 14:31:05', 'offline', 'staff', 3);
 INSERT INTO `cm_user` VALUES (4, '李四', 'lisi', 'ada6f2b5b7ba3f1531e4c1e291cbe7b0', '2021-04-12 18:22:42', '2021-04-23 14:31:06', 'online', 'staff', 1);
@@ -170,6 +195,17 @@ DROP TRIGGER IF EXISTS `apply_time`;
 delimiter ;;
 CREATE TRIGGER `apply_time` BEFORE INSERT ON `cm_application` FOR EACH ROW begin
          set new.apply_time = now();
+end
+;;
+delimiter ;
+
+-- ----------------------------
+-- Triggers structure for table cm_emergency
+-- ----------------------------
+DROP TRIGGER IF EXISTS `time`;
+delimiter ;;
+CREATE TRIGGER `time` BEFORE INSERT ON `cm_emergency` FOR EACH ROW begin
+         set new.time = now();
 end
 ;;
 delimiter ;

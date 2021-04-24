@@ -9,6 +9,7 @@ Route::rule('userinfo','admin/index/userinfo');
 Route::rule('carinfo','admin/index/carinfo');
 Route::rule('carlog','admin/index/carlog');
 Route::rule('approval','admin/index/approval');
+Route::rule('emergency','admin/index/emergency');
 return [
     // pathinfo分隔符
     'pathinfo_depr'         => '/',
