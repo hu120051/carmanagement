@@ -30,8 +30,6 @@ function delCookie(name) {
     if (cval != null)
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
 }
-console.log("%c\n\n\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\n                  _oo0oo_                   \n                 088888880                  \n                 88\" . \"88                  \n                 (| -_- |)                  \n                  0\\ = /0                   \n               ___/'---'\\___                \n             .' \\\\\\|   |/// '.              \n            / \\\\\\||| : |||/// \\             \n           /_ ||||||-:-|||||| _\\            \n          |   | \\\\\\\\ - //// |   |           \n          | \\_|  ''\\---/''  |_/ |           \n           \\  .-\\__  '-'  __/-.  /          \n        ___'. .'  /--.--\\  '. .'___         \n     .\"\"  '< '.___\\_<|>_/___.' >'  \"\".      \n    | | : '-  \\'.:'\\ _ /':.'/ - ' : | |     \n    \\  \\ '_.   \\_ __\\ /__ _/   .-' /  /     \n     '-____'.___  \\_____/  ___.'____-'      \n                  '=---='                   \n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n     Powered By Hamm Email:admin@hamm.cn    \n\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\n", "background-color:yellow;color:orangered;");
-console.log("%c\n\n\n  Wish you fuck your bugs\n\n\n", "font-size:20px;color:orangered;font-weight:bold;");
 
 const isDebug = true;
 echoGroupStart("System initialize start");
@@ -39,19 +37,19 @@ echo("System initializeing");
 echoGroupEnd("System has been initialized");
 function echo(msg, color = "#000", fontSize = "14") {
     if (isDebug) {
-        console.log("%c " + msg, "font-size:" + fontSize + "px;color:" + color + ";font-weight:bold;");
+  //      console.log("%c " + msg, "font-size:" + fontSize + "px;color:" + color + ";font-weight:bold;");
     }
 }
 
 function echoGroupStart(msg, color = "#000") {
     if (isDebug) {
-        console.group("%c " + msg, "font-size:16px;color:" + color + ";font-weight:bold;");
+  //      console.group("%c " + msg, "font-size:16px;color:" + color + ";font-weight:bold;");
     }
 }
 function echoGroupEnd(msg, color = "#000") {
     if (isDebug) {
-        console.groupEnd();
-        console.log("%c " + msg, "font-size:16px;color:" + color + ";font-weight:bold;");
+  //      console.groupEnd();
+   //     console.log("%c " + msg, "font-size:16px;color:" + color + ";font-weight:bold;");
     }
 }
 
