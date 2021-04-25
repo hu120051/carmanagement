@@ -22,4 +22,11 @@ class Application extends Model
             'status' => 'fail'
         ]);
     }
+
+    public function getmyapplication($username){
+        $user = new User();
+        $pk = $user->where('username','=',$username)->find();
+
+        return $this->where('userid','=',$pk['uid'])->order('start_date','desc')->select();
+    }
 }

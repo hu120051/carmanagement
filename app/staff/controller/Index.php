@@ -22,4 +22,15 @@ class Index extends BaseController
         }
         return View::fetch('staff');
     }
+
+    public function apply()
+    {
+
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('apply');
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace app\staff\controller;
 
+use app\model\Application;
 use app\model\User;
 use app\staff\BaseController;
 use think\facade\View;
@@ -31,5 +32,12 @@ class Worker extends BaseController
         {
             return jerr('用户名或密码错误',400);
         }
+    }
+
+    public function getmyapplication(){
+        $username = cookie('username');
+        $application = new Application();
+        $data = $application->getmyapplication($username);
+        return jok('',$data);
     }
 }
