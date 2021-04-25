@@ -43,6 +43,7 @@ class User extends BaseController
             $data = $user->getmyvalue($user_account);
             if($data['group'] == "admin"||$data['group'] == "superadmin"){
                 setCookie('username', $user_account, time() + 3600, '/');
+                setCookie('group', 'admin', time() + 3600, '/');
                 return jok('登录成功',$temp);
             }
             else{
