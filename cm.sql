@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 24/04/2021 10:32:05
+ Date: 25/04/2021 16:04:23
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `cm_application`  (
   INDEX `carid`(`carid`) USING BTREE,
   CONSTRAINT `cm_application_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cm_application_ibfk_2` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_application
@@ -44,6 +44,11 @@ INSERT INTO `cm_application` VALUES (2, 3, 2, '2021-04-13 11:13:11', '2021-04-14
 INSERT INTO `cm_application` VALUES (8, 4, 1, '2021-04-13 11:13:24', '2021-04-14', '2021-04-15', 'pass');
 INSERT INTO `cm_application` VALUES (9, 5, 4, '2021-04-15 17:49:26', '2021-04-16', '2021-04-20', 'pass');
 INSERT INTO `cm_application` VALUES (10, 6, 5, '2021-04-21 16:14:09', '2021-04-22', '2021-04-23', 'pass');
+INSERT INTO `cm_application` VALUES (11, 2, 1, '2021-04-25 14:51:13', '2021-04-26', '2021-04-26', 'fail');
+INSERT INTO `cm_application` VALUES (12, 2, 3, '2021-04-25 14:51:34', '2021-04-26', '2021-04-26', 'pass');
+INSERT INTO `cm_application` VALUES (13, 2, 4, '2021-04-25 15:38:18', '2021-04-26', '2021-04-26', 'applying');
+INSERT INTO `cm_application` VALUES (14, 2, 5, '2021-04-25 15:39:20', '2021-04-28', '2021-04-29', 'applying');
+INSERT INTO `cm_application` VALUES (15, 1, 2, '2021-04-25 16:03:06', '2021-04-27', '2021-04-29', 'applying');
 
 -- ----------------------------
 -- Table structure for cm_car
@@ -173,9 +178,9 @@ CREATE TABLE `cm_user`  (
 -- ----------------------------
 -- Records of cm_user
 -- ----------------------------
-INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-24 09:41:55', 'online', 'superadmin', 13);
+INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-25 16:03:44', 'online', 'superadmin', 33);
 INSERT INTO `cm_user` VALUES (2, '管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2021-04-12 17:10:17', '2021-04-23 14:31:03', 'offline', 'admin', 114);
-INSERT INTO `cm_user` VALUES (3, '张三', 'zhangsan', '3ab7873060b6de9ca93b664e752bca6f', '2021-04-12 18:21:57', '2021-04-23 14:31:05', 'offline', 'staff', 3);
+INSERT INTO `cm_user` VALUES (3, '张三', 'zhangsan', '3ab7873060b6de9ca93b664e752bca6f', '2021-04-12 18:21:57', '2021-04-25 13:52:08', 'online', 'staff', 5);
 INSERT INTO `cm_user` VALUES (4, '李四', 'lisi', 'ada6f2b5b7ba3f1531e4c1e291cbe7b0', '2021-04-12 18:22:42', '2021-04-23 14:31:06', 'online', 'staff', 1);
 INSERT INTO `cm_user` VALUES (5, '王五', 'wangwu', 'b52c0992c2d18eddbad0c05bac922cee', '2021-04-13 10:08:40', '2021-04-23 14:31:07', 'offline', 'staff', 4);
 INSERT INTO `cm_user` VALUES (6, '赵六', 'zhaoliu', 'ad324eb585496327017b46f1b1d526de', '2021-04-13 10:31:03', '2021-04-23 14:31:08', 'online', 'admin', 7);
