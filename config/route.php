@@ -10,6 +10,11 @@ Route::rule('carinfo','admin/index/carinfo');
 Route::rule('carlog','admin/index/carlog');
 Route::rule('approval','admin/index/approval');
 Route::rule('emergency','admin/index/emergency');
+
+Route::rule('work','staff/index/work');
+Route::rule('apply','staff/index/apply');
+Route::rule('my','staff/index/my');
+
 return [
     // pathinfo分隔符
     'pathinfo_depr'         => '/',

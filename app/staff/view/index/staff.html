@@ -16,7 +16,12 @@
         <van-row>
             <van-nav-bar title="主页"/>
         </van-row>
-        <h2 align="center">欢迎您:{{user}}({{group}})</h2>
+        <van-row type="flex" justify="center">
+            <img src="/static/images/logo.png" width="100px" height="100px">
+        </van-row>
+        <van-row type="flex" justify="center">
+            <h2 style="margin: 10px">欢迎您:{{user}}({{group}})</h2>
+        </van-row>
         <van-row>
             <van-tabbar v-model="active">
                 <van-tabbar-item name="work" onclick="location.href='work';" icon="desktop-o">工作</van-tabbar-item>
