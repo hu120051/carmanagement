@@ -175,6 +175,7 @@
                             that.abc();
                             //清空marker
                             marker = [];
+                            var convertor = new BMapGL.Convertor();
                             setTimeout(function(){
                                 console.log(that.loc);
                                 for (var k in that.loc) {
@@ -185,33 +186,71 @@
                                     console.log('对象数组中地址')
                                     console.log(k)
                                     var pt = new BMapGL.Point(parseFloat(that.loc[k].lng), parseFloat(that.loc[k].lat));
-                                    marker[k] = new BMapGL.Marker(pt, {
-                                        icon: myIcon
-                                    });
-                                    map.addOverlay(marker[k]);
-                                    num++;
-                                    var opts = {
-                                        width: 200,
-                                        height: 110,
-                                        title: '车辆信息'
-                                    };
-                                    var tmp;
-                                    switch(that.loc[k].type) {
-                                        case 'small_passenger': tmp = "小型客车";break;
-                                        case 'mid_passenger':   tmp = "中型客车";break;
-                                        case 'large_passenger': tmp = "大型客车";break;
-                                        case 'small_cargo':     tmp = "小型货车";break;
-                                        case 'mid_cargo':       tmp = "中型货车";break;
-                                        case 'large_cargo':     tmp = "大型货车";break;
-                                    }
 
-                                    //闭包完成点击事件的参数传递
-                                    (function (x) {
-                                        var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[k].license+'</br>驾驶员：'+that.loc[k].name+'</br>车辆类型：'+tmp+'</br>定位时间：'+that.loc[k].time, opts);
-                                        marker[x].addEventListener("click", function () {
-                                            this.openInfoWindow(infoWindow,pt);
-                                        });
-                                    })(k);
+
+
+                                    var pointArr = [];
+                                    pointArr.push(pt);
+                                    convertor.translate(pointArr, 1, 5, function (data){
+                                        if(data.status === 0){
+                                            marker[k] = new BMapGL.Marker(data.points[0], {
+                                                icon: myIcon
+                                            });
+                                            map.addOverlay(marker[k]);
+                                            num++;
+                                            var opts = {
+                                                width: 200,
+                                                height: 110,
+                                                title: '车辆信息'
+                                            };
+                                            var tmp;
+                                            switch(that.loc[k].type) {
+                                                case 'small_passenger': tmp = "小型客车";break;
+                                                case 'mid_passenger':   tmp = "中型客车";break;
+                                                case 'large_passenger': tmp = "大型客车";break;
+                                                case 'small_cargo':     tmp = "小型货车";break;
+                                                case 'mid_cargo':       tmp = "中型货车";break;
+                                                case 'large_cargo':     tmp = "大型货车";break;
+                                            }
+
+                                            //闭包完成点击事件的参数传递
+                                            (function (x) {
+                                                var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[k].license+'</br>驾驶员：'+that.loc[k].name+'</br>车辆类型：'+tmp+'</br>定位时间：'+that.loc[k].time, opts);
+                                                marker[x].addEventListener("click", function () {
+                                                    this.openInfoWindow(infoWindow,pt);
+                                                });
+                                            })(k);
+                                        }
+                                    })
+
+
+                                    // marker[k] = new BMapGL.Marker(pt, {
+                                    //     icon: myIcon
+                                    // });
+                                    // map.addOverlay(marker[k]);
+                                    // num++;
+                                    // var opts = {
+                                    //     width: 200,
+                                    //     height: 110,
+                                    //     title: '车辆信息'
+                                    // };
+                                    // var tmp;
+                                    // switch(that.loc[k].type) {
+                                    //     case 'small_passenger': tmp = "小型客车";break;
+                                    //     case 'mid_passenger':   tmp = "中型客车";break;
+                                    //     case 'large_passenger': tmp = "大型客车";break;
+                                    //     case 'small_cargo':     tmp = "小型货车";break;
+                                    //     case 'mid_cargo':       tmp = "中型货车";break;
+                                    //     case 'large_cargo':     tmp = "大型货车";break;
+                                    // }
+                                    //
+                                    // //闭包完成点击事件的参数传递
+                                    // (function (x) {
+                                    //     var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[k].license+'</br>驾驶员：'+that.loc[k].name+'</br>车辆类型：'+tmp+'</br>定位时间：'+that.loc[k].time, opts);
+                                    //     marker[x].addEventListener("click", function () {
+                                    //         this.openInfoWindow(infoWindow,pt);
+                                    //     });
+                                    // })(k);
                                 }
                             }, 500);
 
