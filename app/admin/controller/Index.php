@@ -119,7 +119,7 @@ class Index extends BaseController
         {
             return View::fetch('login');
         }
-        return View::fetch('location');
+        return View::fetch('location_2');
     }
 
     /**

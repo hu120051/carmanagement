@@ -34,7 +34,7 @@
                 this.abcd();
                 this.abc();
                 // setTimeout(()=>{   //设置延迟执行
-                    this.baiduMap();
+                this.baiduMap();
                 // },1000);
 
                 // this.username = getCookie('username');
@@ -187,34 +187,68 @@
                                     console.log('对象数组中地址')
                                     console.log(k)
                                     var pt = new BMapGL.Point(parseFloat(that.loc[k].lng), parseFloat(that.loc[k].lat));
-                                    marker[k] = new BMapGL.Marker(pt, {
-                                        icon: myIcon
-                                    });
 
-                                    map.addOverlay(marker[k]);
-                                    num++;
-                                    var opts = {
-                                        width: 200,
-                                        height: 110,
-                                        title: '车辆信息'
-                                    };
-                                    var tmp;
-                                    switch(that.loc[k].type) {
-                                        case 'small_passenger': tmp = "小型客车";break;
-                                        case 'mid_passenger':   tmp = "中型客车";break;
-                                        case 'large_passenger': tmp = "大型客车";break;
-                                        case 'small_cargo':     tmp = "小型货车";break;
-                                        case 'mid_cargo':       tmp = "中型货车";break;
-                                        case 'large_cargo':     tmp = "大型货车";break;
-                                    }
 
-                                    //闭包完成点击事件的参数传递
-                                    (function (x) {
-                                        var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[k].license+'</br>驾驶员：'+that.loc[k].name+'</br>车辆类型：'+tmp+'</br>定位时间：'+that.loc[k].time, opts);
-                                        marker[x].addEventListener("click", function () {
-                                            this.openInfoWindow(infoWindow,pt);
+                                    translateCallback = function (data){
+                                        marker[k] = new BMapGL.Marker(data.points[0], {
+                                            icon: myIcon
                                         });
-                                    })(k);
+
+                                        map.addOverlay(marker[k]);
+                                        num++;
+                                        var opts = {
+                                            width: 200,
+                                            height: 110,
+                                            title: '车辆信息'
+                                        };
+                                        var tmp;
+                                        switch(that.loc[k].type) {
+                                            case 'small_passenger': tmp = "小型客车";break;
+                                            case 'mid_passenger':   tmp = "中型客车";break;
+                                            case 'large_passenger': tmp = "大型客车";break;
+                                            case 'small_cargo':     tmp = "小型货车";break;
+                                            case 'mid_cargo':       tmp = "中型货车";break;
+                                            case 'large_cargo':     tmp = "大型货车";break;
+                                        }
+                                        //原来的闭包方法无效了...
+                                        var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[k].license+'</br>驾驶员：'+that.loc[k].name+'</br>车辆类型：'+tmp+'</br>定位时间：'+that.loc[k].time, opts);
+                                        marker[k].addEventListener("click",  () => {
+                                            map.openInfoWindow(infoWindow,data.points[0]);
+                                        });
+
+                                    }
+                                    var convertor = new BMapGL.Convertor();
+                                    var pointArr = [];
+                                    pointArr.push(pt);
+                                    convertor.translate(pointArr, COORDINATES_WGS84, COORDINATES_BD09, translateCallback)
+
+                                    // marker[k] = new BMapGL.Marker(pt, {
+                                    //     icon: myIcon
+                                    // });
+                                    // map.addOverlay(marker[k]);
+                                    // num++;
+                                    // var opts = {
+                                    //     width: 200,
+                                    //     height: 110,
+                                    //     title: '车辆信息'
+                                    // };
+                                    // var tmp;
+                                    // switch(that.loc[k].type) {
+                                    //     case 'small_passenger': tmp = "小型客车";break;
+                                    //     case 'mid_passenger':   tmp = "中型客车";break;
+                                    //     case 'large_passenger': tmp = "大型客车";break;
+                                    //     case 'small_cargo':     tmp = "小型货车";break;
+                                    //     case 'mid_cargo':       tmp = "中型货车";break;
+                                    //     case 'large_cargo':     tmp = "大型货车";break;
+                                    // }
+                                    //
+                                    // //闭包完成点击事件的参数传递
+                                    // (function (x) {
+                                    //     var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[k].license+'</br>驾驶员：'+that.loc[k].name+'</br>车辆类型：'+tmp+'</br>定位时间：'+that.loc[k].time, opts);
+                                    //     marker[x].addEventListener("click", function () {
+                                    //         this.openInfoWindow(infoWindow,pt);
+                                    //     });
+                                    // })(k);
                                 }
                             }, 500);
 
