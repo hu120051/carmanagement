@@ -2,6 +2,8 @@
 namespace app\staff\controller;
 
 use app\model\Application;
+use app\model\Car;
+use app\model\Location;
 use app\model\User;
 use app\staff\BaseController;
 
@@ -52,5 +54,22 @@ class Worker extends BaseController
         $application = new Application();
         $application->addapplication($userid,$carid,$start_date,$end_date,$remark);
         return jok('添加成功');
+    }
+
+    public function addloction(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $userid = $params['userid'];
+        $carid = $params['carid'];
+        $lng = $params['lng'];
+        $lat = $params['lat'];
+        $location = new Location();
+        $location->addlocation($userid,$carid,$lng,$lat);
+    }
+
+    public function stop(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $carid = $params['carid'];
+        $car = new Car();
+        $car->stop($carid);
     }
 }

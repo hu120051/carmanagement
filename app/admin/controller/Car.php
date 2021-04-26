@@ -58,7 +58,7 @@ class Car extends  BaseController
     public function getlocation(){
         $subQuery = Db::table('cm_location')
             ->alias('l')
-            ->join(['cm_car'=>'c'],'l.carid=c.cid')
+            ->join(['cm_car'=>'c'],'l.carid=c.cid and l.userid=c.userid')
             ->join(['cm_user'=>'u'],'l.userid=u.uid')
             ->where('c.userid','<>','null')
             ->order('l.time','desc')

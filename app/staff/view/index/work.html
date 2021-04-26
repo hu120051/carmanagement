@@ -118,7 +118,6 @@
                 },
                 startDrive(){
 
-                    //TODO: 浏览器拒绝获取位置信息，申请SSL证书？
                     var that = this;
                     if(!that.carid){
                         alert("请选择车辆！")
@@ -126,11 +125,17 @@
                     }
                     that.drive = true;
                     var geoLoc;
-
                     var showLocation = (position) => {
                         that.latitude = position.coords.latitude;
                         that.longitude = position.coords.longitude;
-                        console.log("Latitude : " + latitude + " Longitude: " + longitude);
+                        console.log("Latitude : " + that.latitude + " Longitude: " + that.longitude);
+                        axios.post('worker/addloction', Object.assign({}, PostBase, {
+                            lat: that.latitude,
+                            lng: that.longitude,
+                            userid: that.user.uid,
+                            carid: that.carid,
+                        }))
+                        console.log('1')
                     }
                     var errorHandler = (err) => {
                         if(err.code == 1) {
@@ -150,7 +155,10 @@
                 endDrive(){
                     var that = this;
                     that.drive = false;
-                    navigator.geolocation.clearWatch(id);
+                    navigator.geolocation.clearWatch(that.watchid);
+                    axios.post('worker/stop', Object.assign({}, PostBase, {
+                        carid: that.carid,
+                    }))
                 }
             }
         })

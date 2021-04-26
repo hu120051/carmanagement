@@ -40,4 +40,9 @@ class Car extends Model
         $this->where('cid',$cid)->delete();
         return true;
     }
+
+    public function stop($cid){
+        $this->where('cid',$cid)->update(['userid'=>null]);
+        return true;
+    }
 }
