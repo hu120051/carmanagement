@@ -1,0 +1,290 @@
+[33mcommit 70c2d1747f5bf40d70d0e65ce81c1fa14d06d96a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: 酷炫小学生 <1290045698@qq.com>
+Date:   Mon Apr 26 00:26:09 2021 +0800
+
+    update README.md.
+
+[33mcommit 1b2a04d0d2f5614ff37f771ca5584aa9df749ba0[m
+Author: 酷炫小学生 <1290045698@qq.com>
+Date:   Mon Apr 26 00:24:41 2021 +0800
+
+    update README.md.
+
+[33mcommit a0711dc93eb399b04498839c6405d2f955aa3245[m
+Author: hhy <1290045698@qq.com>
+Date:   Sun Apr 25 16:04:41 2021 +0800
+
+    更新数据库
+
+[33mcommit 5a3f612d285d685e2152bdf6b8e139619056da04[m
+Author: hhy <1290045698@qq.com>
+Date:   Sun Apr 25 15:56:55 2021 +0800
+
+    个人用车申请记录查看
+
+[33mcommit b397f4cdec9b6d396cd3da4e9eea854365ddbc1c[m
+Author: hhy <1290045698@qq.com>
+Date:   Sun Apr 25 13:52:57 2021 +0800
+
+    fix:职工通过用户端登录后可访问管理员端的bug
+
+[33mcommit f3e4999812d5913dbf1b82724caa29c1ca06649d[m
+Author: hhy <1290045698@qq.com>
+Date:   Sun Apr 25 11:04:33 2021 +0800
+
+    web定位demo
+
+[33mcommit 6e8f80f37b1c00b84a3b144df425dafb76239906[m
+Author: hhy <1290045698@qq.com>
+Date:   Sun Apr 25 11:03:53 2021 +0800
+
+    web定位demo
+
+[33mcommit 7ebf67dbd3428d223bdee28ee6bdcc4ce51b412a[m
+Author: hhy <1290045698@qq.com>
+Date:   Sun Apr 25 10:11:50 2021 +0800
+
+    员工个人主页
+
+[33mcommit a514f7fc0332c6cf7270976b1401ba6bc2b389ec[m
+Author: hhy <1290045698@qq.com>
+Date:   Sat Apr 24 18:21:15 2021 +0800
+
+    职工登陆判断
+
+[33mcommit a2224919ceae5c1cc1c4c3b9329594eb21cbaaca[m
+Author: hhy <1290045698@qq.com>
+Date:   Sat Apr 24 15:37:00 2021 +0800
+
+    用户端入口
+
+[33mcommit 5f13277b10420ba90c06b8c02eec0cc2bd7b2511[m
+Author: hhy <1290045698@qq.com>
+Date:   Sat Apr 24 10:32:19 2021 +0800
+
+    新增突发事件处理模块
+
+[33mcommit 61936bb6c24a5693642920593211f2eb9780fe59[m
+Author: hhy <1290045698@qq.com>
+Date:   Fri Apr 23 14:40:36 2021 +0800
+
+    增加登录计数器count
+
+[33mcommit d104b41048ec958035841980bd44597f96ab84ca[m
+Author: hhy <1290045698@qq.com>
+Date:   Fri Apr 23 13:55:46 2021 +0800
+
+    更新数据库cm
+
+[33mcommit 94772c3d6204fe5bc2ecf8a37bea18ac27a73731[m
+Author: hhy <1290045698@qq.com>
+Date:   Fri Apr 23 13:53:45 2021 +0800
+
+    初始不显示位置，动态更新完成
+    ps:mysql5.7在子查询中只用order by无效，非要加入limit...
+
+[33mcommit 5535e8936dc187e205c6a7bbf413ee6ee273cda7[m
+Merge: 6c2ccb3 1177870
+Author: hhy <1290045698@qq.com>
+Date:   Fri Apr 23 10:42:45 2021 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 6c2ccb37c59e7233c428529aedec12f38fde4247[m
+Author: hhy <1290045698@qq.com>
+Date:   Fri Apr 23 10:36:42 2021 +0800
+
+    根据得到数据在地图上标注，窗口点击函数使用闭包
+
+[33mcommit 117787036f71a84660b71afc5a91d9e141ea03c4[m
+Author: 酷炫小学生 <1290045698@qq.com>
+Date:   Thu Apr 22 22:06:58 2021 +0800
+
+    update README.md.
+
+[33mcommit 8c0e943a864fcebd5e3c249c56b49f2efc04eb71[m
+Author: hhy <1290045698@qq.com>
+Date:   Thu Apr 22 22:04:14 2021 +0800
+
+    延迟百度地图生成时间，便于顺利读到vue中data
+
+[33mcommit 179e8ba6e44061fa39fa4d4bf02e933d97b6d091[m
+Author: hhy <1290045698@qq.com>
+Date:   Thu Apr 22 21:43:08 2021 +0800
+
+    一点微小的工作
+
+[33mcommit a4e3eb4b0c0a3f5e8c17072f5cb73ac602bdc2e1[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 21 16:59:32 2021 +0800
+
+    审批变更后同步到车辆使用记录表
+
+[33mcommit 0329a8c8f42e395e838512b3c8375ffe2910af92[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 21 16:16:54 2021 +0800
+
+    更新数据库
+
+[33mcommit b30435d0fd96c27da02b264475b7d20a61a60bb0[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 21 16:15:53 2021 +0800
+
+    申请审批
+
+[33mcommit a75315d5fa4559d8a678ecafea88442e36499971[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 21 15:24:44 2021 +0800
+
+    用车记录
+
+[33mcommit 8d8bd6095e3589d06040e8409bf9a4d6abdc924d[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 21 14:22:07 2021 +0800
+
+    车辆删除
+
+[33mcommit 152a66ff9c1f7e602851235cc991cd4be5de3afb[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 21 11:25:37 2021 +0800
+
+    车辆管理模块，车辆添加
+
+[33mcommit ee345982c3beab925d3d9be11f2c8c6e81cababf[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 18:03:28 2021 +0800
+
+    增加删除提示框，完善超级管理员权限
+
+[33mcommit 9f9962453ac4618747b57357ae1edfd6772c8848[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 17:49:52 2021 +0800
+
+    删除用户
+
+[33mcommit 6a2682e3ffbf8b335ff3da3a88e43fc758727333[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 17:35:14 2021 +0800
+
+    高亮在线用户
+
+[33mcommit 3220bf68f6b9ab5ae6026346864c069bc133d37e[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 17:18:01 2021 +0800
+
+    添加用户功能
+
+[33mcommit 385d713f75f2c0969e49535e0382e9f65dad3e29[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 16:49:18 2021 +0800
+
+    修改用户信息功能
+
+[33mcommit ae6b0caa8ac7eb3b79fb07fec0f9ff13fb098a21[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 16:21:30 2021 +0800
+
+    用户管理模块，完善了登录退出的数据库操作
+
+[33mcommit 9ee16aaf5706a72f0c958ec3925c399a531266fd[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 13:51:59 2021 +0800
+
+    登录加入管理员权限判断，分离车辆监控页
+
+[33mcommit acd8c644638e94b07ae1d1aef39752428d3a2732[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 13:23:31 2021 +0800
+
+    fix:域名跳转错误，添加路由跳转
+
+[33mcommit ebbeee7970fe6077ee86a3b7c2cd98c21274aadd[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 20 10:56:54 2021 +0800
+
+    使用header和footer处理网页
+
+[33mcommit 5793be0ec2abcb5fd0f9cabf59207e8a50e638cf[m
+Author: hhy <1290045698@qq.com>
+Date:   Mon Apr 19 18:33:08 2021 +0800
+
+    添加更新位置按钮
+
+[33mcommit 2cdde916636824627d2f753a3afe5501344ea7fe[m
+Merge: 7c89049 6966995
+Author: hhy <1290045698@qq.com>
+Date:   Mon Apr 19 17:53:30 2021 +0800
+
+    Merge branch 'master' of gitee.com:hu-hanyang/learnthinkphp
+
+[33mcommit 7c890495946dd9827ad6fb547437f6d4d90a5bc5[m
+Author: hhy <1290045698@qq.com>
+Date:   Mon Apr 19 17:50:43 2021 +0800
+
+    登录后自动初始化完善，admin中成功引入百度地图api
+
+[33mcommit 6966995669ef0afb5b9a18686e740ffa6a7b83a2[m
+Author: hhy <1290045698@qq.com>
+Date:   Sun Apr 18 14:53:41 2021 +0800
+
+    fix:修改密码后未清除cookie
+
+[33mcommit 1705129d00698f141456c1daf98d190e8c64ff8c[m
+Author: hhy <1290045698@qq.com>
+Date:   Sat Apr 17 14:17:55 2021 +0800
+
+    前端向后端传json，通过input接收
+
+[33mcommit 513d0f0f79a2ecc6c0785f6d93771908ebc0be60[m
+Author: hhy <1290045698@qq.com>
+Date:   Thu Apr 15 19:48:05 2021 +0800
+
+    changepswd完成
+
+[33mcommit a69c31b3b8b4568915f1d7cf8e46c58814727792[m
+Author: hhy <1290045698@qq.com>
+Date:   Thu Apr 15 19:06:40 2021 +0800
+
+    changepswd网页框架
+
+[33mcommit 3cc02a90e00fdb55f065c348efdeb897a9ba3cf9[m
+Author: hhy <1290045698@qq.com>
+Date:   Thu Apr 15 14:48:35 2021 +0800
+
+    后台管理主页面head和menu，暂存百度地图用例
+
+[33mcommit 70003e54bfc9e7dbf8b68ca12128ba7f97205d23[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 14 16:59:42 2021 +0800
+
+    利用cookie完成简单的登录/退出跳转
+
+[33mcommit 5d3dd619d2f545d03063e50bf44d95e53cd7d6d2[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 14 12:15:49 2021 +0800
+
+    session一直检测不到，改用cookie，完成登录页面跳转
+
+[33mcommit bd9b5fbc7175f0b7da13934ac4c6121438a8a641[m
+Author: hhy <1290045698@qq.com>
+Date:   Wed Apr 14 00:15:10 2021 +0800
+
+    登录axios完善
+
+[33mcommit 71a93dfca493c6584dc4d941abe9859093f029a4[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 13 16:08:07 2021 +0800
+
+    登录
+
+[33mcommit c1c1bdd74d3b4287534686f254aa6727ba565740[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 13 13:41:01 2021 +0800
+
+    更新数据库目录，BaseController的access未完成
+
+[33mcommit 7d15f9c6097c218320dde99883526b999e940cce[m
+Author: hhy <1290045698@qq.com>
+Date:   Tue Apr 13 08:55:39 2021 +0800
+
+    引入css和js

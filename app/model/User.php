@@ -112,4 +112,12 @@ class User extends Model
     public function getmyvaluebypk($pk){
         return $this->find($pk);
     }
+
+    public function getmyuid($username)
+    {
+        $user = $this->where([
+            "username" => $username,
+        ])->value('uid');
+        return $user;
+    }
 }

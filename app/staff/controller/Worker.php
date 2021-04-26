@@ -4,7 +4,6 @@ namespace app\staff\controller;
 use app\model\Application;
 use app\model\User;
 use app\staff\BaseController;
-use think\facade\View;
 
 class Worker extends BaseController
 {
@@ -39,5 +38,19 @@ class Worker extends BaseController
         $application = new Application();
         $data = $application->getmyapplication($username);
         return jok('',$data);
+    }
+
+    public function addapplication(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $username = cookie('username');
+        $user = new User();
+        $userid = $user->getmyuid($username);
+        $carid = $params['carid'];
+        $start_date = $params['start_date'];
+        $end_date = $params['end_date'];
+        $remark = $params['remark'];
+        $application = new Application();
+        $application->addapplication($userid,$carid,$start_date,$end_date,$remark);
+        return jok('添加成功');
     }
 }

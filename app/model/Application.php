@@ -29,4 +29,15 @@ class Application extends Model
 
         return $this->where('userid','=',$pk['uid'])->order('start_date','desc')->select();
     }
+
+    public function addapplication($userid,$carid,$start_date,$end_date,$remark){
+        $data = [
+            'userid' => $userid,
+            'carid' => $carid,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'remark' => $remark
+        ];
+        $this->insert($data);
+    }
 }

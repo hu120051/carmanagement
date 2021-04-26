@@ -29,9 +29,9 @@
 <body>
 <div id="app">
     <van-row>
-        <van-nav-bar title="用车申请记录" @click-right="onClickRight">
+        <van-nav-bar title="用车申请记录">
             <template #right>
-                <van-icon name="plus" size="18"/>
+                <van-icon name="plus" size="18" onclick="window.open('addapplication');"/>
             </template>
         </van-nav-bar>
     </van-row>
@@ -69,34 +69,11 @@
                 }
             },
             mounted () {
-                this.abcd();
+
                 this.abc();
             },
             methods: {
-                abcd(){
-                    var that = this;
-                    axios.post('/admin/user/getmyvalue')
-                        .then(function (response)
-                        {
-                            that.user = response.data.data.name;
-                            that.update_time = response.data.data.update_time;
-                            if(a=='superadmin')
-                            {
-                                that.group = "超级管理员";
-                            }
-                            else if(a=="admin")
-                            {
-                                that.group = "管理员";
-                            }
-                            else if(a=='staff')
-                            {
-                                that.group = "职工";
-                            }
-                            else{
-                                that.group = "未知用户";
-                            }
-                        })
-                },
+
                 abc(){
                     var that = this;
                     axios.post('worker/getmyapplication')
@@ -106,7 +83,6 @@
                         })
                 },
                 onClickRight(){
-
                     console.log('ttt')
 
                 },
