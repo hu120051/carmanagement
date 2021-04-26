@@ -11,6 +11,10 @@ class Car extends Model
         return $this->order('cid','asc')->select();
     }
 
+    public function getallfreecar(){
+        return $this->where('userid','=',null)->order('cid','asc')->select();
+    }
+
     public function addcar($license,$brand,$price,$bought_time,$type){
         $data = [
             'license' => $license,

@@ -20,9 +20,9 @@
          function getLocationUpdate(){
             if(navigator.geolocation){
                // timeout at 60000 milliseconds (60 seconds)
-               var options = {timeout:600};
+
                geoLoc = navigator.geolocation;
-               watchID = geoLoc.watchPosition(showLocation, errorHandler, options);
+               watchID = geoLoc.watchPosition(showLocation, errorHandler);
             } else {
                alert("Sorry, browser does not support geolocation!");
             }

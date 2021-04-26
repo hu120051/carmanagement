@@ -14,7 +14,11 @@ class Car extends  BaseController
         $data = $car->getallcar();
         return jok('',$data);
     }
-
+    public function getallfreecar(){
+        $car = new \app\model\Car();
+        $data = $car->getallfreecar();
+        return jok('',$data);
+    }
     /**
      * 添加车辆
      *
