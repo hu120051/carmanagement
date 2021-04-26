@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 25/04/2021 16:04:23
+ Date: 26/04/2021 14:08:15
 */
 
 SET NAMES utf8mb4;
@@ -29,26 +29,34 @@ CREATE TABLE `cm_application`  (
   `start_date` date NULL DEFAULT NULL,
   `end_date` date NULL DEFAULT NULL,
   `status` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'applying',
+  `remark` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`applyid`) USING BTREE,
   INDEX `userid`(`userid`) USING BTREE,
   INDEX `carid`(`carid`) USING BTREE,
   CONSTRAINT `cm_application_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cm_application_ibfk_2` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_application
 -- ----------------------------
-INSERT INTO `cm_application` VALUES (1, 7, 3, '2021-04-13 11:02:25', '2021-04-13', '2021-04-13', 'pass');
-INSERT INTO `cm_application` VALUES (2, 3, 2, '2021-04-13 11:13:11', '2021-04-14', '2021-04-16', 'fail');
-INSERT INTO `cm_application` VALUES (8, 4, 1, '2021-04-13 11:13:24', '2021-04-14', '2021-04-15', 'pass');
-INSERT INTO `cm_application` VALUES (9, 5, 4, '2021-04-15 17:49:26', '2021-04-16', '2021-04-20', 'pass');
-INSERT INTO `cm_application` VALUES (10, 6, 5, '2021-04-21 16:14:09', '2021-04-22', '2021-04-23', 'pass');
-INSERT INTO `cm_application` VALUES (11, 2, 1, '2021-04-25 14:51:13', '2021-04-26', '2021-04-26', 'fail');
-INSERT INTO `cm_application` VALUES (12, 2, 3, '2021-04-25 14:51:34', '2021-04-26', '2021-04-26', 'pass');
-INSERT INTO `cm_application` VALUES (13, 2, 4, '2021-04-25 15:38:18', '2021-04-26', '2021-04-26', 'applying');
-INSERT INTO `cm_application` VALUES (14, 2, 5, '2021-04-25 15:39:20', '2021-04-28', '2021-04-29', 'applying');
-INSERT INTO `cm_application` VALUES (15, 1, 2, '2021-04-25 16:03:06', '2021-04-27', '2021-04-29', 'applying');
+INSERT INTO `cm_application` VALUES (1, 7, 3, '2021-04-13 11:02:25', '2021-04-13', '2021-04-13', 'pass', NULL);
+INSERT INTO `cm_application` VALUES (2, 3, 2, '2021-04-13 11:13:11', '2021-04-14', '2021-04-16', 'fail', NULL);
+INSERT INTO `cm_application` VALUES (8, 4, 1, '2021-04-13 11:13:24', '2021-04-14', '2021-04-15', 'pass', NULL);
+INSERT INTO `cm_application` VALUES (9, 5, 4, '2021-04-15 17:49:26', '2021-04-16', '2021-04-20', 'pass', NULL);
+INSERT INTO `cm_application` VALUES (10, 6, 5, '2021-04-21 16:14:09', '2021-04-22', '2021-04-23', 'pass', NULL);
+INSERT INTO `cm_application` VALUES (11, 2, 1, '2021-04-25 14:51:13', '2021-04-26', '2021-04-26', 'fail', NULL);
+INSERT INTO `cm_application` VALUES (12, 2, 3, '2021-04-25 14:51:34', '2021-04-26', '2021-04-26', 'pass', NULL);
+INSERT INTO `cm_application` VALUES (13, 2, 4, '2021-04-25 15:38:18', '2021-04-26', '2021-04-26', 'applying', NULL);
+INSERT INTO `cm_application` VALUES (14, 2, 5, '2021-04-25 15:39:20', '2021-04-28', '2021-04-29', 'applying', NULL);
+INSERT INTO `cm_application` VALUES (15, 1, 2, '2021-04-25 16:03:06', '2021-04-27', '2021-04-29', 'applying', NULL);
+INSERT INTO `cm_application` VALUES (16, 1, 1, '2021-04-26 14:01:01', '2021-04-26', '2021-04-27', 'applying', '');
+INSERT INTO `cm_application` VALUES (17, 1, 1, '2021-04-26 14:01:49', '2021-04-26', '2021-04-27', 'applying', '111');
+INSERT INTO `cm_application` VALUES (18, 1, 1, '2021-04-26 14:02:54', '2021-04-26', '2021-04-27', 'applying', '1112');
+INSERT INTO `cm_application` VALUES (19, 1, 1, '2021-04-26 14:03:04', '2021-04-26', '2021-04-27', 'applying', '1112');
+INSERT INTO `cm_application` VALUES (20, 1, 3, '2021-04-26 14:04:01', '2021-04-26', '2021-04-27', 'applying', '54');
+INSERT INTO `cm_application` VALUES (21, 1, 1, '2021-04-26 14:05:33', '2021-04-26', '2021-04-27', 'applying', '12');
+INSERT INTO `cm_application` VALUES (22, 1, 3, '2021-04-26 14:06:17', '2021-04-26', '2021-04-27', 'applying', '132');
 
 -- ----------------------------
 -- Table structure for cm_car
@@ -178,7 +186,7 @@ CREATE TABLE `cm_user`  (
 -- ----------------------------
 -- Records of cm_user
 -- ----------------------------
-INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-25 16:03:44', 'online', 'superadmin', 33);
+INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-26 13:07:56', 'online', 'superadmin', 37);
 INSERT INTO `cm_user` VALUES (2, '管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2021-04-12 17:10:17', '2021-04-23 14:31:03', 'offline', 'admin', 114);
 INSERT INTO `cm_user` VALUES (3, '张三', 'zhangsan', '3ab7873060b6de9ca93b664e752bca6f', '2021-04-12 18:21:57', '2021-04-25 13:52:08', 'online', 'staff', 5);
 INSERT INTO `cm_user` VALUES (4, '李四', 'lisi', 'ada6f2b5b7ba3f1531e4c1e291cbe7b0', '2021-04-12 18:22:42', '2021-04-23 14:31:06', 'online', 'staff', 1);
