@@ -17,19 +17,21 @@
     {include file="common/header"/}
     <el-main>
         <el-table :data="application" :row-class-name="tableRowClassName">
-            <el-table-column prop="applyid" label="ID">
+            <el-table-column prop="applyid" label="ID" width="50%" align="center">
             </el-table-column>
-            <el-table-column prop="name" label="申请人">
+            <el-table-column prop="name" label="申请人" width="80%" align="center">
             </el-table-column>
-            <el-table-column prop="carid" label="申请车辆编号" >
+            <el-table-column prop="carid" label="申请车辆编号" width="110%" align="center">
             </el-table-column>
-            <el-table-column prop="type" label="申请车辆类型" >
+            <el-table-column prop="type" label="申请车辆类型" width="130%">
             </el-table-column>
-            <el-table-column prop="license" label="申请车辆车牌号">
+            <el-table-column prop="license" label="申请车辆车牌号" align="center">
             </el-table-column>
             <el-table-column prop="start_date" label="使用开始时间">
             </el-table-column>
             <el-table-column prop="end_date" label="使用归还时间">
+            </el-table-column>
+            <el-table-column prop="remark" label="备注">
             </el-table-column>
             <el-table-column prop="status" label="状态">
             </el-table-column>

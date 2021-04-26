@@ -11,7 +11,7 @@ class Application extends BaseController
             ->alias('a')
             ->join(['cm_car'=>'c'],'a.carid=c.cid')
             ->join(['cm_user'=>'u'],'a.userid=u.uid')
-            ->field('a.applyid,a.userid, u.name,a.carid,c.type,c.license,a.apply_time,a.start_date,a.end_date,a.status')
+            ->field('a.applyid,a.userid, u.name,a.carid,c.type,c.license,a.apply_time,a.start_date,a.end_date,a.status,a.remark')
             ->order('apply_time','desc')
             ->select();
         return jok('',$data);
