@@ -44,4 +44,15 @@ class Index extends BaseController
         }
         return View::fetch('addapplication');
     }
+
+    public function myinfo()
+    {
+
+        $error = $this->access();
+        if($error)
+        {
+            return View::fetch('login');
+        }
+        return View::fetch('myinfo');
+    }
 }

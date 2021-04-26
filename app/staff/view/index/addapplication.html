@@ -14,7 +14,7 @@
 <body>
 <div id="app">
     <van-row>
-        <van-nav-bar title="添加申请"  left-text="返回" @click-left='close'/>
+        <van-nav-bar title="添加申请"  left-text="返回" @click-left='cancel'/>
     </van-row>
     <van-form @submit="onSubmit">
         <van-field
@@ -111,8 +111,8 @@
                 },300);
             },
             methods: {
-                close(){
-                    window.close();
+                cancel(){
+                    location.href='apply';
                 },
                 abc(){
                     var that = this;
@@ -143,10 +143,10 @@
                     axios.post('worker/addapplication', Object.assign({}, PostBase, that.form))
                         .then(function (response) {
                             if (response.data.code == CODE_SUCCESS) {
-                                alert('添加成功，即将自动关闭页面')
+                                alert('添加成功，即将回到上页')
                                 setTimeout(()=>{   //设置延迟执行
-                                    window.close();
-                                },1000);
+                                    location.href='apply';
+                                },500);
                             } else {
                                 that.$message.error(response.data.msg);
                             }

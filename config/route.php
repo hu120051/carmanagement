@@ -13,7 +13,7 @@ Route::rule('emergency','admin/index/emergency');
 
 Route::rule('work','staff/index/work');
 Route::rule('apply','staff/index/apply');
-Route::rule('my','staff/index/my');
+Route::rule('myinfo','staff/index/myinfo');
 Route::rule('addapplication','staff/index/addapplication');
 return [
     // pathinfo分隔符
