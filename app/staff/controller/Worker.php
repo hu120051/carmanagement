@@ -3,6 +3,7 @@ namespace app\staff\controller;
 
 use app\model\Application;
 use app\model\Car;
+use app\model\Emergency;
 use app\model\Location;
 use app\model\User;
 use app\staff\BaseController;
@@ -71,5 +72,17 @@ class Worker extends BaseController
         $carid = $params['carid'];
         $car = new Car();
         $car->stop($carid);
+    }
+
+    public function addemergency(){
+        $params=json_decode(file_get_contents("php://input"),true);
+        $userid = $params['userid'];
+        $carid = $params['carid'];
+        $remark = $params['remark'];
+        $lng = $params['lng'];
+        $lat = $params['lat'];
+        $em = new Emergency();
+        $em->addemergency($userid,$carid,$remark,$lng,$lat);
+        return jok('ok');
     }
 }

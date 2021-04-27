@@ -42,7 +42,7 @@ class Car extends Model
     }
 
     public function stop($cid){
-        $this->where('cid',$cid)->update(['userid'=>null]);
+        $this->where('cid',$cid)->update(['userid'=>null,'status'=>'free']);
         return true;
     }
 }

@@ -56,7 +56,36 @@
             <van-button round block v-if="!drive" type="info" @click="startDrive">开始行车</van-button>
             <van-button round block v-if="drive" type="danger" @click="endDrive">结束行车</van-button>
         </div>
-
+    <br>
+    <van-divider
+            v-if="drive"
+            :style="{ color: '#ff0000', borderColor: '#ff0000', padding: '0 16px' }"
+    >
+        一键上报
+    </van-divider>
+    <van-field
+            v-if="drive"
+            readonly
+            clickable
+            label="车辆编号"
+            :value="carid"
+            placeholder="选择车辆"
+            @click="showPicker = true"
+    ></van-field>
+    <van-field
+            v-if="drive"
+            v-model="remark"
+            rows="2"
+            autosize
+            label="情况描述"
+            type="textarea"
+            maxlength="50"
+            placeholder="请简要说明情况"
+            show-word-limit
+    ></van-field>
+    <div style="margin: 16px;">
+        <van-button round block v-if="drive" type="danger" @click="postEm">上报</van-button>
+    </div>
     {include file="common/footer"/}
     <script>
         new Vue({
@@ -76,6 +105,7 @@
                     longitude:"",
                     latitude:"",
                     watchid:"",
+                    remark:"",
                 }
             },
             mounted () {
@@ -159,6 +189,25 @@
                     axios.post('worker/stop', Object.assign({}, PostBase, {
                         carid: that.carid,
                     }))
+                },
+                postEm(){
+                    var that = this;
+                    axios.post('worker/addemergency', Object.assign({}, PostBase, {
+                        carid: that.carid,
+                        remark: that.remark,
+                        userid: that.user.uid,
+                        lat: that.latitude,
+                        lng: that.longitude,
+                    }))
+                        .then(function (response) {
+                            if (response.data.code == CODE_SUCCESS) {
+                                alert('上报成功！')
+                            }
+                        })
+                        .catch(function (error) {
+                            alert('Error');
+                            console.log(error);
+                        });
                 }
             }
         })
