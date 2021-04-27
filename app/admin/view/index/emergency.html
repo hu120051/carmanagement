@@ -90,50 +90,50 @@
 
                     var that = this;
                     var marker = [];
-                    //num计数器，用于计数上次有多少辆车，点击更新时便于删除
-                    var num = 0;
+                    var opts = {
+                        width: 200,
+                        height: 130,
+                        title: '事故信息'
+                    };
                     var map = new BMapGL.Map('container');
                     var point = new BMapGL.Point(this.len, this.lat);
                     map.centerAndZoom(point, 15);
-                    // 创建小车图标(目前本地还没有图标，地图上看不到，可以删掉下面一行，marker去掉pt后面的参数，让其变成默认红点)
-                    var myIcon = new BMapGL.Icon('http://i2.tiimg.com/736160/64b8b51c876b5fd5.png', new BMapGL.Size(50, 50));
-                    //创建Marker标注，使用小车图标
-                    for (var i in that.loc) {
-                        // (function (x) {
-                        console.log('name ')
-                        console.log(that.loc[i].name)
-                        console.log('i')
-                        console.log(that.loc[i])
-                        console.log('对象数组中地址')
-                        console.log(i)
-                        var pt = new BMapGL.Point(parseFloat(this.loc[i].lng), parseFloat(this.loc[i].lat));
-                        marker[i] = new BMapGL.Marker(pt, {
-                            icon: myIcon
-                        });
-                        map.addOverlay(marker[i]);
-                        num++;
-                        var opts = {
-                            width: 200,
-                            height: 130,
-                            title: '事故信息'
-                        };
-                        var tmp;
-                        switch(that.loc[i].type) {
-                            case 'small_passenger': tmp = "小型客车";break;
-                            case 'mid_passenger':   tmp = "中型客车";break;
-                            case 'large_passenger': tmp = "大型客车";break;
-                            case 'small_cargo':     tmp = "小型货车";break;
-                            case 'mid_cargo':       tmp = "中型货车";break;
-                            case 'large_cargo':     tmp = "大型货车";break;
-                        }
 
-                        //闭包完成点击事件的参数传递
-                        (function (x) {
-                            var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[i].license+'</br>驾驶员：'+that.loc[i].name+'</br>车辆类型：'+tmp+'</br>时间：'+that.loc[i].time+'</br>备注：'+that.loc[i].remark, opts);
-                            marker[x].addEventListener("click", function () {
-                                this.openInfoWindow(infoWindow,pt);
+                    var myIcon = new BMapGL.Icon('http://i2.tiimg.com/736160/64b8b51c876b5fd5.png', new BMapGL.Size(50, 50));
+                    //创建Marker标注，使用emergency图标
+                    for (var i in that.loc) {
+
+                        var pt = new BMapGL.Point(parseFloat(this.loc[i].lng), parseFloat(this.loc[i].lat));
+
+                        translateCallback = function(i_shadowed){return function (data){
+
+                            marker[i_shadowed] = new BMapGL.Marker(data.points[0], {
+                                icon: myIcon
                             });
-                        })(i);
+                            map.addOverlay(marker[i_shadowed]);
+
+                            var tmp;
+                            switch(that.loc[i_shadowed].type) {
+                                case 'small_passenger': tmp = "小型客车";break;
+                                case 'mid_passenger':   tmp = "中型客车";break;
+                                case 'large_passenger': tmp = "大型客车";break;
+                                case 'small_cargo':     tmp = "小型货车";break;
+                                case 'mid_cargo':       tmp = "中型货车";break;
+                                case 'large_cargo':     tmp = "大型货车";break;
+                            }
+
+                            //闭包完成点击事件的参数传递
+
+                            var infoWindow = new BMapGL.InfoWindow('牌照：'+that.loc[i_shadowed].license+'</br>驾驶员：'+that.loc[i_shadowed].name+'</br>车辆类型：'+tmp+'</br>时间：'+that.loc[i_shadowed].time+'</br>备注：'+that.loc[i_shadowed].remark, opts);
+                            marker[i_shadowed].addEventListener("click", function () {
+                                this.openInfoWindow(infoWindow,data.points[0]);
+                            });
+
+                        }}
+                        var convertor = new BMapGL.Convertor();
+                        var pointArr = [];
+                        pointArr.push(pt);
+                        convertor.translate(pointArr, COORDINATES_WGS84, COORDINATES_BD09, translateCallback(i))
                     }
 
 

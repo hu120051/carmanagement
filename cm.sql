@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 26/04/2021 22:59:48
+ Date: 27/04/2021 09:39:27
 */
 
 SET NAMES utf8mb4;
@@ -82,8 +82,8 @@ CREATE TABLE `cm_car`  (
 -- ----------------------------
 -- Records of cm_car
 -- ----------------------------
-INSERT INTO `cm_car` VALUES (1, '渝A·7Q523', 'using', '2021-04-12', 'large_cargo', 29.00, '东风', NULL);
-INSERT INTO `cm_car` VALUES (2, '渝B·32124', 'free', '2021-04-12', 'mid_passenger', 40.00, '丰田', 1);
+INSERT INTO `cm_car` VALUES (1, '渝A·7Q523', 'using', '2021-04-12', 'large_cargo', 29.00, '东风', 1);
+INSERT INTO `cm_car` VALUES (2, '渝B·32124', 'free', '2021-04-12', 'mid_passenger', 40.00, '丰田', NULL);
 INSERT INTO `cm_car` VALUES (3, '渝C·78025', 'using', '2021-04-12', 'small_passenger', 7.00, '五菱', 7);
 INSERT INTO `cm_car` VALUES (4, '渝A·B12S3', 'using', '2021-04-15', 'mid_cargo', 22.00, '一汽', 3);
 INSERT INTO `cm_car` VALUES (5, '渝A·JL23K', 'free', '2021-04-21', 'large_cargo', 29.30, '东风', NULL);
@@ -103,7 +103,7 @@ CREATE TABLE `cm_car_use`  (
   INDEX `carid`(`carid`) USING BTREE,
   CONSTRAINT `cm_car_use_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cm_car_use_ibfk_2` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_car_use
@@ -133,12 +133,14 @@ CREATE TABLE `cm_emergency`  (
   INDEX `userid`(`userid`) USING BTREE,
   CONSTRAINT `cm_emergency_ibfk_1` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cm_emergency_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_emergency
 -- ----------------------------
 INSERT INTO `cm_emergency` VALUES (1, 3, 6, '车祸', 106.4667340, 29.5693180, '2021-04-24 09:38:46', '0');
+INSERT INTO `cm_emergency` VALUES (2, 4, 1, '堵车', 106.4767340, 29.5593180, '2021-04-26 23:44:01', '0');
+INSERT INTO `cm_emergency` VALUES (3, 2, 1, 'test', 104.1953970, 35.8616600, '2021-04-27 09:03:30', '0');
 
 -- ----------------------------
 -- Table structure for cm_location
@@ -156,7 +158,7 @@ CREATE TABLE `cm_location`  (
   INDEX `cm_location_ibfk_2`(`carid`) USING BTREE,
   CONSTRAINT `cm_location_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `cm_user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cm_location_ibfk_2` FOREIGN KEY (`carid`) REFERENCES `cm_car` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cm_location
@@ -190,7 +192,7 @@ CREATE TABLE `cm_user`  (
 -- ----------------------------
 -- Records of cm_user
 -- ----------------------------
-INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-26 22:11:51', 'online', 'superadmin', 60);
+INSERT INTO `cm_user` VALUES (1, '胡寒阳', 'hu120051', 'aa80064af613c4b057d5a4c1a397e140', '2021-04-12 17:08:47', '2021-04-27 08:41:51', 'online', 'superadmin', 63);
 INSERT INTO `cm_user` VALUES (2, '管理员', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2021-04-12 17:10:17', '2021-04-23 14:31:03', 'offline', 'admin', 114);
 INSERT INTO `cm_user` VALUES (3, '张三', 'zhangsan', '3ab7873060b6de9ca93b664e752bca6f', '2021-04-12 18:21:57', '2021-04-25 13:52:08', 'online', 'staff', 5);
 INSERT INTO `cm_user` VALUES (4, '李四', 'lisi', 'ada6f2b5b7ba3f1531e4c1e291cbe7b0', '2021-04-12 18:22:42', '2021-04-23 14:31:06', 'online', 'staff', 1);
