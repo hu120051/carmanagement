@@ -1,4 +1,4 @@
-# <h1><p align="center">车辆管理系统</p></h1>
+# <p align="center">车辆管理系统</p>
 
 <p align="center">
     <img src="https://svg.hamm.cn/badge.svg?key=Base&value=ThinkPHP6"/>
