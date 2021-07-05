@@ -81,7 +81,7 @@
 
 </div>
 </body>
-<script src="/static/js/vueee.js"></script>
+<script src="/static/js/vue-2.6.10.min.js"></script>
 <script src="/static/js/axios.min.js"></script>
 <script src="/static/js/vant.min.js"></script>
 <script src="/static/js/StartAdmin.js"></script>
@@ -106,9 +106,6 @@
             },
             mounted () {
                 this.abc();
-                setTimeout(()=>{   //设置延迟执行
-                   this.abcd();
-                },300);
             },
             methods: {
                 cancel(){
@@ -120,26 +117,26 @@
                         .then(function (response)
                         {
                             that.car= response.data.data;
+                            var i;
+                            for(i in that.car){
+                                switch(that.car[i].type) {
+                                    case 'small_passenger': that.car[i].type = "小型客车";break;
+                                    case 'mid_passenger':   that.car[i].type = "中型客车";break;
+                                    case 'large_passenger': that.car[i].type = "大型客车";break;
+                                    case 'small_cargo':     that.car[i].type = "小型货车";break;
+                                    case 'mid_cargo':       that.car[i].type = "中型货车";break;
+                                    case 'large_cargo':     that.car[i].type = "大型货车";break;
+                                }
+                            }
                         })
 
                 },
-                abcd(){
-                    var that = this;
-                    console.log(that.car.length)
-                    var i;
-                    for(i in that.car){
-                        switch(that.car[i].type) {
-                            case 'small_passenger': that.car[i].type = "小型客车";break;
-                            case 'mid_passenger':   that.car[i].type = "中型客车";break;
-                            case 'large_passenger': that.car[i].type = "大型客车";break;
-                            case 'small_cargo':     that.car[i].type = "小型货车";break;
-                            case 'mid_cargo':       that.car[i].type = "中型货车";break;
-                            case 'large_cargo':     that.car[i].type = "大型货车";break;
-                        }
-                    }
-                },
                 onSubmit(){
                     var that = this;
+                    if(!that.form.carid|!that.form.start_date|!that.form.end_date){
+                        alert("请完善信息！");
+                        return;
+                    }
                     axios.post('worker/addapplication', Object.assign({}, PostBase, that.form))
                         .then(function (response) {
                             if (response.data.code == CODE_SUCCESS) {

@@ -17,7 +17,7 @@
         <van-nav-bar title="工作"/>
     </van-row>
     <van-row type="flex" justify="center">
-        <img src="/static/images/logo.png" width="100px" height="100px">
+        <img src="/static/images/logo.png" width="70px" height="70px">
     </van-row>
     <van-field
             readonly
@@ -28,7 +28,7 @@
             @click="showPicker = true"
     ></van-field>
 
-    <van-popup v-model="showPicker" round position="bottom">
+    <van-popup v-if="!drive" v-model="showPicker" round position="bottom">
 
         <van-picker
 
@@ -56,13 +56,11 @@
             <van-button round block v-if="!drive" type="info" @click="startDrive">开始行车</van-button>
             <van-button round block v-if="drive" type="danger" @click="endDrive">结束行车</van-button>
         </div>
-    <br>
-    <van-divider
-            v-if="drive"
-            :style="{ color: '#ff0000', borderColor: '#ff0000', padding: '0 16px' }"
-    >
-        一键上报
-    </van-divider>
+    <van-cell-group v-if="drive" title="当前位置信息">
+        <van-cell title="经度">{{longitude}}</van-cell>
+        <van-cell title="纬度">{{latitude}}</van-cell>
+    </van-cell-group>
+    <van-cell-group v-if="drive" title="事故上报"></van-cell-group>
     <van-field
             v-if="drive"
             readonly
@@ -106,6 +104,7 @@
                     latitude:"",
                     watchid:"",
                     remark:"",
+                    int:"",
                 }
             },
             mounted () {
@@ -177,7 +176,11 @@
 
                     if(navigator.geolocation){
                         geoLoc = navigator.geolocation;
-                        that.watchid = geoLoc.watchPosition(showLocation, errorHandler);
+
+                        that.int=self.setInterval(function (){
+                            geoLoc.getCurrentPosition(showLocation, errorHandler);
+                            },1000)
+
                     } else {
                         alert("Sorry, browser does not support geolocation!");
                     }
@@ -185,7 +188,10 @@
                 endDrive(){
                     var that = this;
                     that.drive = false;
-                    navigator.geolocation.clearWatch(that.watchid);
+                    that.longitude="";
+                    that.latitude="";
+                    window.clearInterval(that.int);
+
                     axios.post('worker/stop', Object.assign({}, PostBase, {
                         carid: that.carid,
                     }))
